@@ -5,25 +5,23 @@
 #                                                     +:+ +:+         +:+      #
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/09/29 18:55:22 by srapin            #+#    #+#              #
-#    Updated: 2023/09/29 19:24:04 by srapin           ###   ########.fr        #
+#    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
+#    Updated: 2023/10/01 00:18:33 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phoneBook
+NAME = attak
 
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 
 
 FILES = \
-		Contact\
-		PhoneBook\
+		Replace\
 		main
 
 
 INCLUDES_FILES = \
-		Contact\
-		PhoneBook
+		Replace\
 
 
 SRCS_DIR = src

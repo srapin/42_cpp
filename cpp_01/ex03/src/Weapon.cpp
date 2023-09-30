@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:55:29 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 00:48:53 by srapin           ###   ########.fr       */
+/*   Created: 2023/09/30 23:04:38 by srapin            #+#    #+#             */
+/*   Updated: 2023/09/30 23:20:43 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/Weapon.hpp"
 
-
-#ifndef PHONE_BOOK_HPP
-#define PHONE_BOOK_HPP
-
-#include "Contact.hpp"
-
-class PhoneBook
+std::string Weapon::getType()
 {
-    private :
-        int number_of_contact ;
-        Contact contact[8];
-        
-    public :
-        PhoneBook();
-        void add();
-        void search();
-};
+    return _type;
+}
 
+void        Weapon::setType(std::string type)
+{
+    _type = type;
+}
 
-#endif
+Weapon::Weapon(std::string type)
+{
+    _type = type;
+}

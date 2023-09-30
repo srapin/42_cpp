@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:55:29 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 00:48:53 by srapin           ###   ########.fr       */
+/*   Created: 2023/09/30 23:11:20 by srapin            #+#    #+#             */
+/*   Updated: 2023/09/30 23:19:03 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/HumanA.hpp"
 
-
-#ifndef PHONE_BOOK_HPP
-#define PHONE_BOOK_HPP
-
-#include "Contact.hpp"
-
-class PhoneBook
+HumanA::HumanA(std::string name, Weapon &Weapon) : _weapon(Weapon)
 {
-    private :
-        int number_of_contact ;
-        Contact contact[8];
-        
-    public :
-        PhoneBook();
-        void add();
-        void search();
-};
+    _name = name;
+}
 
-
-#endif
+void	HumanA::attack(void)
+{
+    std::cout << _name << " attacks with their "<< _weapon.getType() << std::endl;
+}

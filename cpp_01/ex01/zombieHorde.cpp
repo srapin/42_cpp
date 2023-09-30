@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:55:29 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 00:48:53 by srapin           ###   ########.fr       */
+/*   Created: 2023/09/30 22:33:48 by srapin            #+#    #+#             */
+/*   Updated: 2023/09/30 22:38:45 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.hpp"
 
-
-#ifndef PHONE_BOOK_HPP
-#define PHONE_BOOK_HPP
-
-#include "Contact.hpp"
-
-class PhoneBook
+Zombie* zombieHorde( int N, std::string name )
 {
-    private :
-        int number_of_contact ;
-        Contact contact[8];
-        
-    public :
-        PhoneBook();
-        void add();
-        void search();
-};
+    Zombie  *z;
 
-
-#endif
+	z = new (std::nothrow) Zombie[N];
+	if (!z)
+		return (NULL);
+	for (int i = 0; i < N; i++)
+		z[i].set_name(name);
+	return (z);
+}

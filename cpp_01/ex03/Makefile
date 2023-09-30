@@ -6,24 +6,26 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 18:55:22 by srapin            #+#    #+#              #
-#    Updated: 2023/09/29 19:24:04 by srapin           ###   ########.fr        #
+#    Updated: 2023/09/30 23:25:58 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phoneBook
+NAME = attak
 
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 
 
 FILES = \
-		Contact\
-		PhoneBook\
+		HumanA\
+		HumanB\
+		Weapon\
 		main
 
 
 INCLUDES_FILES = \
-		Contact\
-		PhoneBook
+		HumanA\
+		HumanB\
+		Weapon\
 
 
 SRCS_DIR = src

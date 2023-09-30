@@ -5,35 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:59:38 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 00:49:02 by srapin           ###   ########.fr       */
+/*   Created: 2023/09/30 22:21:17 by srapin            #+#    #+#             */
+/*   Updated: 2023/09/30 22:29:29 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/PhoneBook.hpp"
+#include "Zombie.hpp"
 
 int main()
 {
-    PhoneBook book;
-    std::string	command;
-    
-    
-    while (true)
-    {
-        std::cout << ">";
-        getline(std::cin, command);
-
-        if (command == "ADD")
-            book.add();
-        else if (command == "SEARCH")
-            book.search();
-        else if (command == "EXIT")
-        {
-            std::cout << "exit" << std::endl;
-            break;
-        }
-        else
-            std::cout << "You enterd a wrong command\n";
-        
-    }
+    Zombie *z = newZombie("truc");
+    z->announce();
+    randomChump("bidule");
+    delete(z);
 }

@@ -5,35 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:59:38 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 00:49:02 by srapin           ###   ########.fr       */
+/*   Created: 2023/10/01 00:36:48 by srapin            #+#    #+#             */
+/*   Updated: 2023/10/01 00:46:07 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/PhoneBook.hpp"
+#include "Harl.hpp"
 
-int main()
+int main(int ac, char **av)
 {
-    PhoneBook book;
-    std::string	command;
-    
-    
-    while (true)
+    if (ac <= 1)
     {
-        std::cout << ">";
-        getline(std::cin, command);
-
-        if (command == "ADD")
-            book.add();
-        else if (command == "SEARCH")
-            book.search();
-        else if (command == "EXIT")
-        {
-            std::cout << "exit" << std::endl;
-            break;
-        }
-        else
-            std::cout << "You enterd a wrong command\n";
-        
+        std::cout << "bad args\n";
+        return (1);
     }
+    Harl harl(av[1]);
+    // harl.complain("WARNING");
+    // harl.complain("DEBUG");
+    // harl.complain("INFO");
+    // harl.complain("ERROR");
+    // harl.complain("lol");
+    
 }
