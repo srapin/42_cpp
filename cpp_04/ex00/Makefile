@@ -6,7 +6,7 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2023/10/01 23:31:32 by srapin           ###   ########.fr        #
+#    Updated: 2023/10/02 00:31:23 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,22 @@ CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 
 
 FILES = \
-		Contact\
-		PhoneBook\
-		main
+		main \
+		Animal \
+		Cat \
+		Dog \
+		WrongAnimal \
+		WrongCat \
+		WrongDog \
 
 
 INCLUDES_FILES = \
-		Contact\
-		PhoneBook
+		Animal \
+		Cat \
+		Dog \
+		WrongAnimal \
+		WrongCat \
+		WrongDog \
 
 
 SRCS_DIR = src

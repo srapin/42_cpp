@@ -6,54 +6,28 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2023/10/01 23:31:32 by srapin           ###   ########.fr        #
+#    Updated: 2023/10/01 19:38:41 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phoneBook
+FLAGS = -std=c++98 -Wall -Wextra -Werror -g3
 
+NAME = bsp
 CC = c++
-FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 
+SRCS = \
+	main.cpp\
+	ScavTrap.cpp\
+	ClapTrap.cpp
 
-FILES = \
-		Contact\
-		PhoneBook\
-		main
-
-
-INCLUDES_FILES = \
-		Contact\
-		PhoneBook
-
-
-SRCS_DIR = src
-SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .cpp, $(FILES)))
-
-OBJS_DIR = obj
-OBJS = ${patsubst ${SRCS_DIR}/%.cpp, ${OBJS_DIR}/%.o, ${SRCS}}
-
-
-INCLUDES_DIR = inc
-INCLUDES = $(addprefix $(INCLUDES_DIR)/, $(addsuffix .hpp, $(INCLUDES_FILES)))
-
-all: $(NAME)
-
+OBJS = $(SRCS:.cpp=.o)
+	
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(FLAGS) -o $@
-
-${OBJS_DIR}/%.o: ${SRCS_DIR}/%.cpp $(INCLUDES)
-	@mkdir -p $(OBJS_DIR)
-	$(CC) $(FLAGS) -o $@ -c $<
-
-
+	$(CC) $(FLAGS) $^ -o $@
 
 clean:
-	rm -rf $(OBJS_DIR)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
-
-re: clean all
-
-
-.PHONY: all clean fclean re 
+	
+re: fclean $(NAME)
