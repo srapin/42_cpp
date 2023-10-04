@@ -9,7 +9,7 @@
             "name": "(gdb) Lancer",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/ex01/phoneBook",
+            "program": "${workspaceFolder}/ex03/phoneBook",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
