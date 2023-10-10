@@ -5,10 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/09/29 18:55:22 by srapin            #+#    #+#              #
-#    Updated: 2023/10/02 18:38:46 by srapin           ###   ########.fr        #
+#    Created: 2023/10/03 19:04:13 by srapin            #+#    #+#              #
+#    Updated: 2023/10/09 22:09:50 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = phoneBook
 
@@ -16,20 +17,23 @@ CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 
 
 FILES = \
-		AMateria \
-		IceMateria \
-		CureMateria \
-		ICharacter \
-		Character \
-		main
+		Bureaucrat \
+		Intern\
+		AForm \
+		ShrubberyCreationForm\
+		RobotomyRequestForm\
+		PresidentialPardonForm\
+		main \
+
 
 
 INCLUDES_FILES = \
-		AMateria \
-		IceMateria \
-		CureMateria \
-		ICharacter \
-		Character \
+		Bureaucrat \
+		Intern \
+		ShrubberyCreationForm\
+		RobotomyRequestForm\
+		PresidentialPardonForm\
+		AForm \
 
 
 SRCS_DIR = src

@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 18:39:11 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/02 18:45:43 by srapin           ###   ########.fr       */
+/*   Created: 2023/10/05 18:28:46 by srapin            #+#    #+#             */
+/*   Updated: 2023/10/09 21:36:31 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA
-#define AMATERIA
+#ifndef ROBOTOMYREQUESTFORM
+#define ROBOTOMYREQUESTFORM
 
-#include <string>
-#include "ICharacter.hpp"
+#include "AForm.hpp"
+#include <stdlib.h> 
 
-class AMateria
+class RobotomyRequestForm : public AForm
 {
 	protected:
-		std::string _type;
-	// [...]
+
 	public:
-		AMateria(std::string const & type);
-		// [...]
-		std::string const & getType() const; //Returns the materia type
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target) = 0;
+		RobotomyRequestForm(std::string target);
+        RobotomyRequestForm(const RobotomyRequestForm& other);
+        virtual ~RobotomyRequestForm();
+        RobotomyRequestForm &operator=(const RobotomyRequestForm& other);
+		void execute(Bureaucrat const & executor) const;	
 };
 
 #endif

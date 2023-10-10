@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 18:40:56 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/02 18:43:50 by srapin           ###   ########.fr       */
+/*   Created: 2023/10/05 18:28:46 by srapin            #+#    #+#             */
+/*   Updated: 2023/10/09 21:36:31 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICHARACTER
-#define ICHARACTER
+#ifndef ROBOTOMYREQUESTFORM
+#define ROBOTOMYREQUESTFORM
 
-#include "AMateria.hpp"
+#include "AForm.hpp"
+#include <stdlib.h> 
 
-
-class ICharacter
+class RobotomyRequestForm : public AForm
 {
 	protected:
-		AMateria mat[4];
+
 	public:
-		virtual ~ICharacter() {}
-		virtual std::string const & getName() const = 0;
-		virtual void equip(AMateria* m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter& target) = 0;
+		RobotomyRequestForm(std::string target);
+        RobotomyRequestForm(const RobotomyRequestForm& other);
+        virtual ~RobotomyRequestForm();
+        RobotomyRequestForm &operator=(const RobotomyRequestForm& other);
+		void execute(Bureaucrat const & executor) const;	
 };
 
 #endif
