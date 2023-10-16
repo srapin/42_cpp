@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.hpp                                        :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:58:02 by srapin            #+#    #+#             */
-/*   Updated: 2023/09/30 20:22:24 by srapin           ###   ########.fr       */
+/*   Updated: 2023/10/12 19:40:13 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ class Contact
         void set_index(int i);
         bool check();
         void printPipe();
-        void printSpaces(std::string str);
         void printShortInfo(std::string str);
-        void printInfo(std::string str);
+        void printInfo(std::string title, std::string str);
     public:
         Contact();
         bool add(int index);

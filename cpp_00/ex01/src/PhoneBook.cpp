@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:55:26 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 00:48:46 by srapin           ###   ########.fr       */
+/*   Updated: 2023/10/12 19:37:00 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ PhoneBook::PhoneBook()
 
 void PhoneBook::add()
 {
-    // bool flag;
-    
     if (!contact[number_of_contact].add(number_of_contact))
     {
         std::cout << "contact has not been saved because of an empty fiels\n";
@@ -36,19 +34,20 @@ void PhoneBook::search()
     std::string command;
     int i;
     
+    std::cout << std::setw(11) << "index|";
+    std::cout << std::setw(11) << "first name|";
+    std::cout << std::setw(11) << "last name|";
+    std::cout << std::setw(11) << "nickname|" << std::endl;
     for (int i = 0; i < 8; i++)
         contact[i].printShort();
     std::cout << ">";
     getline(std::cin, command);
     i = atoi( command.c_str() ) -1;
-    // sscanf(command .c_str(), "%d", &i);
-    // std::from_chars(command.c_str(), command.c_str() + command.length(), i);
     if (i < 0 || i > 7)
     {
         std::cout << "bad index\n";
         return;
     }
-    
     contact[i].printAll();
     std::cout << "search\n";
 }
