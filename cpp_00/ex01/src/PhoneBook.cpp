@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:55:26 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/12 19:37:00 by srapin           ###   ########.fr       */
+/*   Updated: 2023/10/17 18:39:30 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void PhoneBook::add()
     if (!contact[number_of_contact].add(number_of_contact))
     {
         std::cout << "contact has not been saved because of an empty fiels\n";
+        return;
     }
     number_of_contact++;
     if (number_of_contact >= 8)
         number_of_contact = 0;
-    std::cout << "add\n";
 }
 
 void PhoneBook::search()
@@ -40,7 +40,7 @@ void PhoneBook::search()
     std::cout << std::setw(11) << "nickname|" << std::endl;
     for (int i = 0; i < 8; i++)
         contact[i].printShort();
-    std::cout << ">";
+    std::cout << "enter index >";
     getline(std::cin, command);
     i = atoi( command.c_str() ) -1;
     if (i < 0 || i > 7)
@@ -49,5 +49,4 @@ void PhoneBook::search()
         return;
     }
     contact[i].printAll();
-    std::cout << "search\n";
 }

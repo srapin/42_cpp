@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:57:58 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/12 19:44:25 by srapin           ###   ########.fr       */
+/*   Updated: 2023/10/17 18:39:39 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void Contact::printShort()
     printPipe();
     printShortInfo(nick_name);
     printPipe();
-    std::cout << "\n";
+    std::cout << std::endl;
 }
 
 Contact::Contact()

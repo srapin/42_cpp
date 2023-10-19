@@ -6,12 +6,12 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 18:23:33 by srapin            #+#    #+#              #
-#    Updated: 2023/09/29 18:52:33 by srapin           ###   ########.fr        #
+#    Updated: 2023/10/17 18:16:41 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-FLAGS = -std=c++98 -Wall -Wextra -Werror -g3
+FLAGS = -std=c++98 -Wall -Wextra -Werror
 
 NAME = megaphone
 CC = c++

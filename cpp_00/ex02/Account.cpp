@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:33:10 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/12 19:45:09 by srapin           ###   ########.fr       */
+/*   Updated: 2023/10/17 19:53:18 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ void	Account::displayAccountsInfos( void )
 Account::Account( int initial_deposit ) : Account()
 {
     _amount = initial_deposit;
+    _totalAmount += initial_deposit;
     _displayTimestamp();
-    std::cout << "index:" << _accountIndex << ";amount:" << _amount<<";created\n";
+    std::cout << "index:" << _accountIndex << ";amount:" << _amount <<";created\n";
 }
 
 Account::~Account( void )
@@ -63,6 +64,7 @@ void	Account::makeDeposit( int deposit )
     _totalNbDeposits++;
     _nbDeposits++;
     _amount += deposit;
+    _totalAmount += deposit;
 	std::cout << ";amount:" << _amount << ";nb_deposits:"
 		<< _nbDeposits << std::endl;
 }
@@ -77,6 +79,7 @@ bool	Account::makeWithdrawal( int withdrawal )
         return false;
     }
     _amount -= withdrawal;
+    _totalAmount -= withdrawal;
     _nbWithdrawals++;
     _totalNbWithdrawals++;
     
