@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:23:42 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/19 20:05:21 by srapin           ###   ########.fr       */
+/*   Updated: 2024/01/30 17:18:22 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ Harl::Harl(std::string level)
 		case 3:
 			func = &Harl::error;
 			(this->*func)();
+			break;
 		default:
 			func = &Harl::unRecognized;
 			(this->*func)();

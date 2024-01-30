@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 22:21:17 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/19 18:23:24 by srapin           ###   ########.fr       */
+/*   Updated: 2024/01/30 17:02:27 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int main()
     std::cout << "enter random name: ";
     if (!std::getline(std::cin, name))
         exit(0);
-    randomChump("bidule");
+    randomChump(name);
 }
