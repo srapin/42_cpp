@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 02:42:06 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 04:04:02 by srapin           ###   ########.fr       */
+/*   Updated: 2024/01/30 21:31:46 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
     ab = foo(a,b, point);
     bc = foo(b, c, point);
     ac = foo(a, c, point);
-    return (ab !=0 && bc !=0 && ac!= 0 && ab +bc+ac == obj);
+    std::cout << ab << " "<< bc << " " << ac << " " << ab +bc+ac << " " << obj << std::endl;
+    return (ab + bc + ac == obj && ab && bc && ac);
 }

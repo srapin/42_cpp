@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 01:00:05 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 01:20:56 by srapin           ###   ########.fr       */
+/*   Updated: 2024/01/30 20:53:12 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Fixed
         Fixed(Fixed const &fixed);
         Fixed &operator= (Fixed const &Fixed); 
         int getRawBits(void) const;
+        void setRawBits(int const raw);
         ~Fixed();
 };
 

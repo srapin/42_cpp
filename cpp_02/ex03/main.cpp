@@ -6,22 +6,22 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:59:33 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 04:08:25 by srapin           ###   ########.fr       */
+/*   Updated: 2024/01/30 21:33:03 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-// int main()
-// {
-//     Fixed a;
-//     Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-//     std::cout << a << std::endl;
-//     std::cout << ++a << std::endl;
-//     std::cout << a << std::endl;
-//     std::cout << a++ << std::endl;
-//     std::cout << a << std::endl;
-//     std::cout << b << std::endl;
-//     std::cout << Fixed::max( a, b ) << std::endl;
-//     return 0;
-// }
+int main()
+{
+	Point a = Point(0, 0);
+	Point b = Point(100, 100);
+	Point c = Point(0, 100);
+	Point p = Point(1, 99);
+	Point p2 = Point(0, 99);
+	Point p3 = Point(150, 199);
+    std::cout << bsp(a, b, c, p) << std::endl;
+    std::cout << bsp(a, b, c, p2) << std::endl;
+    std::cout << bsp(a, b, c, p3) << std::endl;
+    return 0;
+}

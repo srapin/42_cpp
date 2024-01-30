@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 01:00:22 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 01:21:02 by srapin           ###   ########.fr       */
+/*   Updated: 2024/01/30 20:54:34 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ int Fixed::getRawBits(void) const
 {
     std::cout << "getRawBits member function called" << std::endl;
     return _fixedPoint;
+}
+
+void Fixed::setRawBits(int const raw)
+{
+    std::cout << "setRawBits member function called" << std::endl;
+    _fixedPoint = raw;
+    
 }
 
 Fixed::~Fixed()

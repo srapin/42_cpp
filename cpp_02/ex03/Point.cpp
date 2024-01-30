@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 02:41:31 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 04:04:42 by srapin           ###   ########.fr       */
+/*   Updated: 2024/01/30 21:20:46 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,10 @@ float   Point::get_x(void) const
 float   Point::get_y(void) const
 {
     return _y.toFloat();
+}
+
+std::ostream    &operator<<(std::ostream &new_out, Point const &point)
+{
+    new_out << "x=" << point.get_x() << " y=" << point.get_y();
+    return new_out;
 }
