@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 22:18:37 by srapin            #+#    #+#             */
-/*   Updated: 2023/09/30 22:26:04 by srapin           ###   ########.fr       */
+/*   Updated: 2023/10/19 18:22:57 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 Zombie* newZombie( std::string name )
 {
-    auto z = new Zombie(name);
+    Zombie *z = new Zombie(name);
     return z;
 }

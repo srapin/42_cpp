@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:23:42 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/05 17:00:41 by srapin           ###   ########.fr       */
+/*   Updated: 2023/10/19 19:04:25 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void Harl::complain( std::string level )
 			func = &Harl::error;
 			break ;
 		default:
-			std::cout << level << "is not recognised\n";
+			std::cout << level << " is not recognised\n";
 			func = NULL; 
 	}
 	if (func)

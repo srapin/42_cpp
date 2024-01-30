@@ -6,11 +6,11 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2023/10/01 00:18:33 by srapin           ###   ########.fr        #
+#    Updated: 2023/10/19 18:57:19 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = attak
+NAME = replacer
 
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 

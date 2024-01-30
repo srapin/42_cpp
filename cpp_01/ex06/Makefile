@@ -6,13 +6,13 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2023/10/01 00:40:12 by srapin           ###   ########.fr        #
+#    Updated: 2023/10/19 19:06:43 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3
 
-NAME = harl
+NAME = harlFilter
 CC = c++
 SRCS = \
 	main.cpp\
