@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:59:33 by srapin            #+#    #+#             */
-/*   Updated: 2024/01/30 21:33:03 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/01 20:42:14 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int main()
 	Point p = Point(1, 99);
 	Point p2 = Point(0, 99);
 	Point p3 = Point(150, 199);
-    std::cout << bsp(a, b, c, p) << std::endl;
-    std::cout << bsp(a, b, c, p2) << std::endl;
-    std::cout << bsp(a, b, c, p3) << std::endl;
+    // std::cout << bsp(a, b, c, p) << std::endl;
+    // std::cout << bsp(a, b, c, p2) << std::endl;
+    // std::cout << bsp(a, b, c, p3) << std::endl;
     return 0;
 }
