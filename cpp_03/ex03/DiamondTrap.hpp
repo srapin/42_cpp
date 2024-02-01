@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:48:50 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 21:46:58 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/01 21:08:18 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,7 @@ class DiamondTrap : public FragTrap, public ScavTrap
     public:
         DiamondTrap(std::string name);
         ~DiamondTrap();
-        // DiamondTrap &operator=(DiamondTrap const &DiamondTrap);
         void attack(const std::string target);
-        // using ScavTrap::attack();
-        // using ScavTrap::getEnergyPoints;
-        // using ScavTrap::setEnergyPoints;
-        // using FragTrap::getHitPoints;
-        // using FragTrap::setHitPoints;
-        // using FragTrap::getAttackDamage;
-        // using FragTrap::setAttackDamage;
         void whoAmI(void);
 };
 
