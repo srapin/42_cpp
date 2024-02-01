@@ -18,12 +18,12 @@
 
 class ClapTrap
 {
-    // private:
-	protected :
+    private:
+        std::string _name;
         int _hitPoint;
         int _energyPoint;
         int _attackDamage;
-        std::string _name;
+	protected :
         ClapTrap();
         ClapTrap(int hp, int ep, int ad);
 		std::string getName() const;

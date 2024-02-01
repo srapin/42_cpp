@@ -6,13 +6,13 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2023/10/01 20:21:56 by srapin           ###   ########.fr        #
+#    Updated: 2024/02/01 21:03:45 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3
 
-NAME = bsp
+NAME = trap
 CC = c++
 SRCS = \
 	main.cpp\
