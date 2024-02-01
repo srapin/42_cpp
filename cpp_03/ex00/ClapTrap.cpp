@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 18:51:09 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 21:51:55 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/01 20:57:43 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ ClapTrap & ClapTrap::operator=(const ClapTrap &copy)
     setEnergyPoints(copy.getEnergyPoints());
     setAttackDamage(copy.getAttackDamage());
     return (*this);
-    // setName(get)
 }
 
 std::string ClapTrap::getName() const
@@ -93,13 +92,11 @@ void ClapTrap::attack(const std::string& target)
 		std::cout << "ClapTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage!" << std::endl;
 		setEnergyPoints(getEnergyPoints()-1);	
 	}
-	// else if ( getEnergyPoints() <= 0)
-		// std::cout << getName() << " is out of energypoints" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    std::cout << getName() << " it lose " << amount << " hit points." << std::endl;
+    std::cout << getName() << " lose " << amount << " hit points." << std::endl;
     setHitPoints(getHitPoints() - amount);
 }
 void ClapTrap::beRepaired(unsigned int amount)
@@ -111,7 +108,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 	else
 	{
 		std::cout << getName() << " repairs itself." << " it gets " << amount << " hit points back" << std::endl;
-		setEnergyPoints(getHitPoints() + amount);
+		setHitPoints(getHitPoints() + amount);
 		setEnergyPoints(getEnergyPoints() - 1);
 	}
 }
