@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:04:21 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/03 23:18:50 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/06 22:30:59 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
 
 MateriaSource::~MateriaSource()
 {
-    for (int i; i < 4; i++)
+    for (int i = 0; i < 4; i++)
     {
         if (_inv[i])
             delete _inv[i];
@@ -56,7 +56,7 @@ void MateriaSource::learnMateria(AMateria* m)
 {
     if (getCount() < 0 || getCount() > 3)
         return;
-    _inv[getCount()] = m->clone();
+    _inv[getCount()] = m;
     _count++;
 }
 

@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 23:36:22 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/02 02:07:20 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/06 21:18:03 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 class Animal
 {
-    public:
+	public :
+		virtual void makeSound() const = 0;
+		virtual ~Animal();
+	protected:
 		Animal();
 		Animal(const Animal& other);
-		virtual ~Animal();
 		Animal& operator=(const Animal& other);
-		virtual void makeSound() const = 0;
 		const std::string getType() const;
-	protected:
 		Animal(std::string str);
 		std::string type;
 

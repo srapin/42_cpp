@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IceMateria.hpp                                     :+:      :+:    :+:   */
+/*   Cure.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 18:46:15 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/03 22:39:28 by srapin           ###   ########.fr       */
+/*   Created: 2023/10/02 18:46:11 by srapin            #+#    #+#             */
+/*   Updated: 2023/10/03 22:39:32 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICEMATERIA
-#define ICEMATERIA
+#ifndef CUREMATERIA
+#define CUREMATERIA
 
 #include "AMateria.hpp"
 
-class IceMateria : public AMateria
+class Cure :public AMateria
 {
 	protected:
 
 	public:
-		IceMateria();
-        IceMateria(const IceMateria& other);
-        virtual ~IceMateria();
-        IceMateria &operator=(const IceMateria& other);
-		virtual IceMateria* clone() const;
+		Cure();
+        Cure(const Cure& other);
+        virtual ~Cure();
+        Cure &operator=(const Cure& other);
+		virtual Cure* clone() const;
 		virtual void use(ICharacter& target);
 };
 

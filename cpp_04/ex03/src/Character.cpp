@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:46:36 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/03 23:08:42 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/06 22:45:19 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ Character& Character::operator=(const Character& other) {
 void Character::copyInv(const Character& other)
 {
     _count = other.getCount();
-    AMateria * const*toCopy = other.getInv();
+    AMateria * const* toCopy = other.getInv();
     for (int i = 0; i < getCount(); i++)
-    _inv[i] = toCopy[i]->clone();
+        _inv[i] = toCopy[i]->clone();
 }
 
 Character::~Character()
@@ -70,7 +70,6 @@ AMateria* const* Character::getInv() const
 
 void Character::equip(AMateria* m)
 {
-    int i = 0;
     
     if (getCount() > 3)
         return;
@@ -79,9 +78,14 @@ void Character::equip(AMateria* m)
         if (_inv[i] == m)
             return;
     }
-    while (_inv[i])
-        i++;
-    _inv[i] = m;
+    for (int i = 0; i < 4; i++)
+    {
+        if (!_inv[i])
+        {
+            _inv[i] = m;
+            return;   
+        }
+    }
 }
 
 void Character::unequip(int idx)

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IceMateria.cpp                                     :+:      :+:    :+:   */
+/*   Ice.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,37 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/IceMateria.hpp"
+#include "../inc/Ice.hpp"
 
 
-IceMateria::IceMateria() : AMateria("ice")
+Ice::Ice() : AMateria("ice")
 {
-	std::cout << "IceMateria: Default constructor" << std::endl;
+	std::cout << "Ice: Default constructor" << std::endl;
 }
 
-IceMateria::IceMateria(const IceMateria& other) : AMateria(other.getType())
+Ice::Ice(const Ice& other) : AMateria(other.getType())
 {
 
-	std::cout << "IceMateria: Copy constructor" << std::endl;
+	std::cout << "Ice: Copy constructor" << std::endl;
 }
 
-IceMateria& IceMateria::operator=(const IceMateria& other) {
+Ice& Ice::operator=(const Ice& other) {
 	setType(other.getType());
-	std::cout << "IceMateria: Assignment operator" << std::endl;
+	std::cout << "Ice: Assignment operator" << std::endl;
 	return *this;
 }
 
-IceMateria::~IceMateria()
+Ice::~Ice()
 {
-    std::cout << "IceMateria: Destructor" << std::endl;
+    std::cout << "Ice: Destructor" << std::endl;
 }
 
-void IceMateria::use(ICharacter& target)
+void Ice::use(ICharacter& target)
 {
 	std::cout << "* shoots an ice bolt at " << target.getName() << "*" << std::endl;   
 }
 
-IceMateria* IceMateria::clone() const
+Ice* Ice::clone() const
 {
-	return (new IceMateria());
+	return (new Ice());
 }

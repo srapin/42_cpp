@@ -6,19 +6,19 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 18:55:22 by srapin            #+#    #+#              #
-#    Updated: 2023/10/03 22:00:27 by srapin           ###   ########.fr        #
+#    Updated: 2024/02/06 22:28:39 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phoneBook
+NAME = mat
 
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 
 
 FILES = \
 		AMateria \
-		IceMateria \
-		CureMateria \
+		Ice \
+		Cure \
 		Character \
 		MateriaSource \
 		main
@@ -26,8 +26,8 @@ FILES = \
 
 INCLUDES_FILES = \
 		AMateria \
-		IceMateria \
-		CureMateria \
+		Ice \
+		Cure \
 		ICharacter \
 		Character \
 		MateriaSource \

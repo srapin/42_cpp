@@ -6,11 +6,11 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2023/10/02 00:55:44 by srapin           ###   ########.fr        #
+#    Updated: 2024/02/06 21:12:11 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phoneBook
+NAME = animal
 
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 

@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 23:36:01 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/02 02:07:56 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/06 21:15:50 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 #define RED "\x1b[31m"
 # define END_CLR "\033[0m"
 
-int main()
+
+int arrayTest()
 {
 	const Animal **array = NULL;
 	int i = 0;
-    int N = 100;
+    int N = 10;
 
 	array = new (std::nothrow) Animal const*[N];
 	if(!array)
@@ -48,22 +49,33 @@ int main()
 		i++;
 	}
 	delete[] array;
+	return (0);
+}
 
+
+int copyTest()
+{
 	std::cout << "\n*** -> second test for deep copy of two objects cat <- ***\n" << std::endl;
-
 	{
-	Cat basic;
-	{
-		Cat tmp(basic);
-		basic = tmp;
-		std::cout << BLUE << "inside small scope" << std::endl;
-		tmp.makeSound();
+		Cat basic;
+			{
+				Cat tmp(basic);
+				basic = tmp;
+				std::cout << BLUE << "inside small scope" << std::endl;
+				tmp.makeSound();
+				basic.makeSound();
+				std::cout << END_CLR;
+			}
+		std::cout << RED << "outside small scope" << std::endl;
 		basic.makeSound();
 		std::cout << END_CLR;
-	}
-	std::cout << RED << "outside small scope" << std::endl;
-	basic.makeSound();
-	std::cout << END_CLR;
-	return (0);
+		return (0);
     }
+}
+
+int main()
+{
+	arrayTest();
+	copyTest();
+	
 }

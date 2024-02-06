@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CureMateria.cpp                                    :+:      :+:    :+:   */
+/*   Cure.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,37 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/CureMateria.hpp"
+#include "../inc/Cure.hpp"
 
 
-CureMateria::CureMateria() : AMateria("cure")
+Cure::Cure() : AMateria("cure")
 {
-	std::cout << "CureMateria: Default constructor" << std::endl;
+	std::cout << "Cure: Default constructor" << std::endl;
 }
 
-CureMateria::CureMateria(const CureMateria& other) : AMateria(other.getType())
+Cure::Cure(const Cure& other) : AMateria(other.getType())
 {
 
-	std::cout << "CureMateria: Copy constructor" << std::endl;
+	std::cout << "Cure: Copy constructor" << std::endl;
 }
 
-CureMateria& CureMateria::operator=(const CureMateria& other) {
+Cure& Cure::operator=(const Cure& other) {
 	setType(other.getType());
-	std::cout << "CureMateria: Assignment operator" << std::endl;
+	std::cout << "Cure: Assignment operator" << std::endl;
 	return *this;
 }
 
-CureMateria::~CureMateria()
+Cure::~Cure()
 {
-    std::cout << "CureMateria: Destructor" << std::endl;
+    std::cout << "Cure: Destructor" << std::endl;
 }
 
-void CureMateria::use(ICharacter& target)
+void Cure::use(ICharacter& target)
 {
 	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;   
 }
 
-CureMateria* CureMateria::clone() const
+Cure* Cure::clone() const
 {
-	return (new CureMateria());
+	return (new Cure());
 }
