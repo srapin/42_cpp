@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:48:50 by srapin            #+#    #+#             */
-/*   Updated: 2024/02/01 21:08:18 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/06 02:11:20 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,23 @@
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap
+class DiamondTrap : public virtual FragTrap, public virtual ScavTrap
 {
     private:
-        /* data */
         std::string _name;
-    protected:    
-        DiamondTrap();
+    protected:   
+     
     public:
+        DiamondTrap();
+        std::string getName() const;
+        DiamondTrap(const DiamondTrap& other);
+        DiamondTrap &operator=(const DiamondTrap& other);
         DiamondTrap(std::string name);
         ~DiamondTrap();
-        void attack(const std::string target);
+        void attack(const std::string &target);
         void whoAmI(void);
+
+        void doSpecifics() override;
 };
 
 

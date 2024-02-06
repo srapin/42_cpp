@@ -6,7 +6,7 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2024/02/01 21:05:05 by srapin           ###   ########.fr        #
+#    Updated: 2024/02/06 01:15:55 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS = \
 	ClapTrap.cpp \
 	FragTrap.cpp \
 	DiamondTrap.cpp \
+	Test.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 	

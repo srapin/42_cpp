@@ -6,20 +6,32 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:20:19 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 20:33:30 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/06 01:05:59 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() : ClapTrap(100, 100, 30) 
+FragTrap::FragTrap() : ClapTrap(100, 100, 30)
 {
-    std::cout << "\e[0;33m Constructor called of FragTrap\e[0m" << std::endl;
+	std::cout << "	FragTrap: Default constructor" << std::endl;
 }
 
-void FragTrap::highFivesGuys(void)
+FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
 {
-    std::cout << "FragTrap : " << getName() << " high fives !!" << std::endl;
+
+	std::cout << "	FragTrap: Copy constructor" << std::endl;
+}
+
+FragTrap& FragTrap::operator=(const FragTrap& other) {
+	this->ClapTrap::operator=(other);
+	std::cout << "	FragTrap: Assignment operator" << std::endl;
+	return *this;
+}
+
+FragTrap::~FragTrap()
+{
+    std::cout << "	FragTrap: Destructor" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : FragTrap()
@@ -27,20 +39,21 @@ FragTrap::FragTrap(std::string name) : FragTrap()
     setName(name);
 }
 
-FragTrap::~FragTrap()
+void FragTrap::highFivesGuys(void)
 {
-    std::cout << "\e[0;33m Destructor called of FragTrap\e[0m" << std::endl;
+    std::cout << "	FragTrap : " << getName() << " high fives !!" << std::endl;
 }
 
 void FragTrap::attack(const std::string& target)
 {
-	if ( getEnergyPoints() <= 0)
-		std::cout << getName() << " is out of energypoints" << std::endl;
-	else
+	if (checkCapacity(true))
 	{
 		std::cout << "FragTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage!" << std::endl;
 		setEnergyPoints(getEnergyPoints()-1);	
 	}
-    // if (getHitPoints() <= 0)
-		// std::cout << getName() << " is out of hit points" << std::endl;
+}
+
+void FragTrap::doSpecifics()
+{
+	highFivesGuys();
 }

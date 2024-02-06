@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 18:49:38 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 20:50:51 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/06 00:50:56 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ class FragTrap : public virtual ClapTrap
         FragTrap();
     public:
         FragTrap(std::string name);
+        FragTrap(const FragTrap& other);
+        FragTrap &operator=(FragTrap const &FragTrap);
         ~FragTrap();
-        // FragTrap &operator=(FragTrap const &FragTrap);
         void highFivesGuys(void);
-        void attack(const std::string& target);
+        virtual void attack(const std::string& target);
+        virtual void doSpecifics();
 };
 
 

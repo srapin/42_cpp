@@ -6,7 +6,7 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2024/02/01 20:59:04 by srapin           ###   ########.fr        #
+#    Updated: 2024/02/06 01:17:00 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME = trap
 CC = c++
 SRCS = \
 	main.cpp\
-	ClapTrap.cpp
+	ClapTrap.cpp\
+	Test.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 	

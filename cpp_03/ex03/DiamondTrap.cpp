@@ -6,39 +6,62 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:56:11 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/01 22:01:07 by srapin           ###   ########.fr       */
+/*   Updated: 2024/02/06 01:39:17 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-void DiamondTrap::whoAmI()
-{
-	std::cout << "I am " << this->_name << ", my ClapTrap name is " << this->ClapTrap::getName() << std::endl;
-}
-
-
 DiamondTrap::DiamondTrap()
 {
-    std::cout << "\e[0;33mDefault Constructor called of DiamondTrap\e[0m" << std::endl;
+	std::cout << "		DiamondTrap: Default constructor" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other)
 {
-
-	this->_name = name;
-	setHitPoints(100);
-	setEnergyPoints(50);
-	setAttackDamage(30);
-	std::cout << this->_name << " DiamondTrap created" << std::endl;
+	this->_name = other.getName();
+	std::cout << "		DiamondTrap: Copy constructor" << std::endl;
 }
 
-void DiamondTrap::attack(std::string target) 
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) 
 {
-	ScavTrap::attack(target);
+	ClapTrap tmp = other;
+	// tmp = other;
+	this->ClapTrap::operator=(tmp);
+	_name = other.getName();
+	std::cout << "		DiamondTrap: Assignment operator" << std::endl;
+	std::cout << *this;
+	return *this;
 }
 
 DiamondTrap::~DiamondTrap()
 {
-    std::cout << "\e[0;33mDefault Destructor called of DiamondTrap\e[0m" << std::endl;
+    std::cout << "		DiamondTrap: Destructor" << std::endl;
+}
+
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name", 100, 50, 30), FragTrap(), ScavTrap()
+{
+	std::cout << "		DiamondTrap: Accessible constructor" << std::endl;
+	this->_name = name;
+	
+}
+
+void DiamondTrap::whoAmI()
+{
+	std::cout << "I am " << getName() << ", my ClapTrap name is " << ClapTrap::getName() << ", my ScavTrap name is " << this->ScavTrap::getName()<< ", my FragTrap name is " << this->FragTrap::getName() << std::endl;
+}
+
+std::string DiamondTrap::getName() const
+{
+	return _name;
+}
+
+void DiamondTrap::attack(const std::string &target)
+{
+	ScavTrap::attack(target);
+}
+
+void DiamondTrap::doSpecifics()
+{
+	whoAmI();
 }
