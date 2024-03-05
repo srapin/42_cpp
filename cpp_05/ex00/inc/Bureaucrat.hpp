@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 19:05:16 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/05 16:38:22 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/05 17:31:53 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 
 class Bureaucrat
 {
-	protected:
+	private:
 		std::string const _name;
 		int _grade;
+		Bureaucrat();
     public:
 		Bureaucrat(std::string const name, int grade);
 		Bureaucrat(const Bureaucrat& other);
@@ -31,7 +32,6 @@ class Bureaucrat
 		int getGrade() const;
 		Bureaucrat& operator++();
 		Bureaucrat& operator--();
-		void signForm();
 		class GradeTooHighException : public std::exception
 		{
 			public:
