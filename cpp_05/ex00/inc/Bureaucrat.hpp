@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 19:05:16 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/04 21:47:51 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/05 16:38:22 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 class Bureaucrat
 {
+	protected:
+		std::string const _name;
+		int _grade;
     public:
 		Bureaucrat(std::string const name, int grade);
 		Bureaucrat(const Bureaucrat& other);
@@ -39,9 +42,6 @@ class Bureaucrat
 			public:
 				const char *what() const throw();
 		};
-	protected:
-		std::string const _name;
-		int _grade;
 
 };
 
