@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:37:09 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/04 22:32:36 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/05 17:36:31 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ Form::Form(std::string name, int toSign, int toExe) : _name(name), _isSigned(fal
 		throw GradeTooHighException();
 	if (toSign < 1 || toExe < 1)
 		throw GradeTooLowException();
+	std::cout << "Form: Args constructor" << std::endl;
+}
+
+Form::Form() : _name("Default"), _isSigned(false), _gradeToSign(1), _gradeToExecut(1)
+{
 	std::cout << "Form: Default constructor" << std::endl;
 }
 

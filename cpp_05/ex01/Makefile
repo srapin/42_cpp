@@ -6,12 +6,12 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/03 19:04:13 by srapin            #+#    #+#              #
-#    Updated: 2023/10/04 22:32:14 by srapin           ###   ########.fr        #
+#    Updated: 2024/03/05 16:49:25 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = phoneBook
+NAME = form
 
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 

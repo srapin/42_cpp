@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:10:07 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/04 22:27:32 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/05 17:34:14 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name) , _grade
 		throw GradeTooLowException();
 	if (grade < 1)
 		throw GradeTooHighException();
+	std::cout << "Bureaucrat: Args constructor" << std::endl;
+}
+
+Bureaucrat::Bureaucrat()
+{
 	std::cout << "Bureaucrat: Default constructor" << std::endl;
 }
 
