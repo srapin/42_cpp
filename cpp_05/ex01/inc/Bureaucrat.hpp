@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 19:05:16 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/05 17:32:01 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/09 16:45:38 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class Bureaucrat
 		
 		Bureaucrat& operator++();
 		Bureaucrat& operator--();
-		void signForm(const Form f);
+		void signForm(Form &f);
 		
 		class GradeTooHighException : public std::exception
 		{

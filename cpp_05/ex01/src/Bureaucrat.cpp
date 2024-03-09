@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:10:07 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/05 17:34:14 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/09 16:45:32 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,15 @@ Bureaucrat& Bureaucrat::operator--()
 	return *this;
 }
 
-void  Bureaucrat::signForm(const Form f)
+void  Bureaucrat::signForm(Form &f)
 {
 	if (f.getGradeToSign() >= getGrade())
-		std::cout << getName() << " signed form " << f.getName();
+	{
+		f.beSigned(*this);
+		std::cout << getName() << " signed form " << f.getName() << std::endl;
+	}
 	else
-		std::cout << getName() << " couldn’t  sign form " << f.getName();
+		std::cout << getName() << " couldn’t  sign form " << f.getName() << std::endl;
 }
 
 char const *Bureaucrat::GradeTooHighException::what() const throw()
