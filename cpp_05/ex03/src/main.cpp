@@ -6,96 +6,76 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:10:10 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/09 21:46:50 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/10 19:38:47 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Bureaucrat.hpp"
 #include "../inc/ShrubberyCreationForm.hpp"
-
 #include "../inc/PresidentialPardonForm.hpp"
 #include "../inc/RobotomyRequestForm.hpp"
+#include "../inc/Intern.hpp"
 
-int main(void) {
+void checkExec()
+{
+	Intern i;
+	Bureaucrat bob("Bob", 150);
+	Bureaucrat alice("Alice", 5);
+	ShrubberyCreationForm sForm("shru");
+	PresidentialPardonForm pForm("pres");
+	RobotomyRequestForm rForm("req");
+	alice.signForm(sForm);
+	alice.signForm(rForm);
+	alice.signForm(pForm);
+	std::cout << std::endl << std::endl << std::endl;
+	std::cout << "ShrubberyCreationForm" << std::endl;
+	alice.executeForm(sForm);
+	std::cout << std::endl << std::endl << std::endl;
+	std::cout << "PresidentialPardonForm" << std::endl;
+	alice.executeForm(pForm);
+	std::cout << std::endl << std::endl << std::endl;
+	std::cout << "RobotomyRequestForm" << std::endl;
+	alice.executeForm(rForm);
+	alice.executeForm(rForm);
+	alice.executeForm(rForm);
+	alice.executeForm(rForm);
+	alice.executeForm(rForm);
+}
 
-	srand((unsigned int)time(NULL));
-
-	Bureaucrat bureaucrat[2] = { 
-									Bureaucrat("Norminet", 46),
-									Bureaucrat("Sophie", 1),
-								};
-
-	for (int i = 0; i < 2; i++) {
-
-		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << "---------------" << std::endl;
-		std::cout << "---------------------------" << std::endl;
-		std::cout << "----------------------------------------" << std::endl;
-		std::cout << "--------------------------------------------------------" << std::endl;
-		std::cout << std::endl << "		" << bureaucrat[i] << std::endl;
-		std::cout << "--------------------------------------------------------" << std::endl;
-		std::cout << "----------------------------------------" << std::endl;		
-		std::cout << "---------------------------" << std::endl;
-		std::cout << "---------------" << std::endl;
-		std::cout << std::endl;
-
-		try {
-
-			std::cout << "---------SHRUBBERY CREATION FORM----------" << std::endl << std::endl;
-
-			ShrubberyCreationForm A612("MyLoveForBobRoss");
-			std::cout << A612 << std::endl;
-		
-			bureaucrat[i].signForm(A612);
-			std::cout << A612 << std::endl;
-			bureaucrat[i].executeForm(A612);
-			std::cout << A612 << std::endl;
-
-
-			std::cout << std::endl;
-			std::cout << "---------ROBOTOMY REQUEST FORM----------" << std::endl << std::endl;
-			
-			RobotomyRequestForm B410("Bender");
-			std::cout << B410 << std::endl;
-		
-			bureaucrat[i].signForm(B410);
-			std::cout << B410 << std::endl;
-			bureaucrat[i].executeForm(B410);
-			std::cout << B410 << std::endl;
-			
-
-			std::cout << std::endl;
-			std::cout << "---------PRESIDENTIAL PARDON FORM----------" << std::endl << std::endl;
-			
-			PresidentialPardonForm PP01("Julian Assange");
-			std::cout << PP01 << std::endl;
-		
-			std::cout << std::endl;
-			bureaucrat[i].signForm(PP01);
-			std::cout << PP01 << std::endl;
-			bureaucrat[i].executeForm(PP01);
-			std::cout << PP01 << std::endl;
-		}
-		catch (std::exception &e) {
-			std::cerr << e.what() << std::endl;	
-		}
+bool checkInitandError()
+{
+	Intern i = Intern();
+	Intern j = i;
+	try
+	{
+		i.makeForm("lol", "target");
+		return false;
 	}
-		
-
-	std::cout << std::endl;
-	std::cout << "---------TRYING TO SIGN A FORM TWICE----------" << std::endl << std::endl;
-	try {
-		RobotomyRequestForm B410("Bender");
-		std::cout << B410 << std::endl;
-		for (int i = 0; i < 2; i++) {
-			bureaucrat[i].signForm(B410);
-			std::cout << B410 << std::endl;
-		}
+	catch(const Intern::FormNotFound &e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;	
-	}
+	AForm *sForm =i.makeForm("shrubbery creation" ,"test");
+	if (sForm->getGradeToSign() != 145 || sForm->getGradeToExecute() != 137 || sForm->getTarget() != std::string("test"))
+		return false;
+	AForm *rForm = i.makeForm("robotomy request", "test");
+	if (rForm->getGradeToSign() != 72 || rForm->getGradeToExecute() != 45 || rForm->getTarget() != std::string("test"))
+		return false;
+	AForm *pForm = i.makeForm("presidential pardon", "test");
+	if (pForm->getGradeToSign() != 25 || pForm->getGradeToExecute() != 5 || pForm->getTarget() != std::string("test"))
+		return false;
+	delete sForm;
+	delete rForm;
+	delete pForm;
+	return true;
+}
 
-	return 0;
+int main(void)
+{
+	if (!checkInitandError())
+		std::cout << "------------------UNEXPECTED--------------------------" << std::endl;
+	// if (!checkFormInitAndError())
+	// 	std::cout << "------------------UNEXPECTED--------------------------" << std::endl;
+	// checkExec();
+    return (0);
 }

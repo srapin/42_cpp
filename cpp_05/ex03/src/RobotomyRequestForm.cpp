@@ -12,9 +12,14 @@
 
 #include "../inc/RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RRF", target, 72, 45)
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RRF", "Default", 72, 45)
 {
 	std::cout << "RobotomyRequestForm: Default constructor" << std::endl;
+}
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RRF", target, 72, 45)
+{
+	std::cout << "RobotomyRequestForm: Args constructor" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other.getName(), other.getTarget(), other.getGradeToSign(), other.getGradeToExecute())
@@ -38,8 +43,13 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	
 	checkExecutionCond(executor);
 	if (rand() % 2)
-		std::cout << getTarget() << " has been robotomized successfully!" << std::endl;
-	else
 		std::cout << "Robotomy failed" << std::endl;
+	else
+		std::cout << getTarget() << " has been robotomized successfully!" << std::endl;
 
+}
+
+AForm *RobotomyRequestForm::clone(std::string target)
+{
+	return new RobotomyRequestForm(target);
 }

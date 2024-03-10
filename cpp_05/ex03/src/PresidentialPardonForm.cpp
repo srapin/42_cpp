@@ -12,9 +12,14 @@
 
 #include "../inc/PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PPF", target, 25, 5)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("PPF", "Default", 25, 5)
 {
 	std::cout << "PresidentialPardonForm: Default constructor" << std::endl;
+}
+
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PPF", target, 25, 5)
+{
+	std::cout << "PresidentialPardonForm: Args constructor" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm(other.getName(), other.getTarget(), other.getGradeToSign(), other.getGradeToExecute())
@@ -38,4 +43,9 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 	checkExecutionCond(executor);
 	std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 
+}
+
+AForm *PresidentialPardonForm::clone(std::string target)
+{
+	return new PresidentialPardonForm(target);
 }

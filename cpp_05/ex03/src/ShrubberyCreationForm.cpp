@@ -6,15 +6,20 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:39:26 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/09 22:03:25 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/10 19:15:19 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("SCF", target, 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("SCF", "Default", 145, 137)
 {
 	std::cout << "ShrubberyCreationForm: Default constructor" << std::endl;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("SCF", target, 145, 137)
+{
+	std::cout << "ShrubberyCreationForm: Args constructor" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other.getName(), other.getTarget(), other.getGradeToSign(), other.getGradeToExecute())
@@ -35,9 +40,11 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
+	checkExecutionCond(executor);
 	std::string fileName = getTarget() + "_shrubbery";
 	std::ofstream file(fileName.c_str());
-	checkExecutionCond(executor);
+	if (!file)
+		std::cerr << "could not open " << getTarget() + "_shrubbery" << std::endl;
 
 	file <<"				,@@@@@@@,"  << std::endl;
 	file <<"		,,,.   ,@@@@@@/@@,  .oo8888o."  << std::endl;
@@ -48,6 +55,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	file <<"	`&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
 	file <<"		|o|        | |         | |" << std::endl;
 	file <<"		|.|        | |         | |" << std::endl;
-	// file <<"	jgs \\ ._/_/__/  ,\\_//__/.  \\_//__/_" << std::endl;
 	file.close();
+}
+
+AForm *ShrubberyCreationForm::clone(std::string target)
+{
+	return new ShrubberyCreationForm(target);
 }
