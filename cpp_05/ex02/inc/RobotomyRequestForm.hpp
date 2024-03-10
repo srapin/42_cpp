@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:28:46 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/09 21:36:31 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/10 14:09:21 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class RobotomyRequestForm : public AForm
 {
 	protected:
-
+		RobotomyRequestForm();
 	public:
 		RobotomyRequestForm(std::string target);
         RobotomyRequestForm(const RobotomyRequestForm& other);

@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:10:07 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/09 21:49:50 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/10 14:04:04 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name) , _grade
 		throw GradeTooLowException();
 	if (grade < 1)
 		throw GradeTooHighException();
+	std::cout << "Bureaucrat: Args constructor" << std::endl;
+}
+
+Bureaucrat::Bureaucrat()
+{
 	std::cout << "Bureaucrat: Default constructor" << std::endl;
 }
 
@@ -63,15 +68,15 @@ Bureaucrat& Bureaucrat::operator--()
 	return *this;
 }
 
-void  Bureaucrat::signForm(AForm & f)
+void  Bureaucrat::signForm(AForm &f)
 {
-	if (f.getGradeToSign() >= getGrade() && !f.getIsSigned())
+	if (f.getGradeToSign() >= getGrade())
 	{
-		std::cout << getName() << " signed form " << f.getName() << std::endl;
 		f.beSigned(*this);
+		std::cout << getName() << " signed AForm " << f.getName() << std::endl;
 	}
 	else
-		std::cout << getName() << " couldn’t  sign form " << f.getName() << std::endl;
+		std::cout << getName() << " couldn’t  sign AForm " << f.getName() << std::endl;
 }
 
 void Bureaucrat::executeForm(AForm const & form)

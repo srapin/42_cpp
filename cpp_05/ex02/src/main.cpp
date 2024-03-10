@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:10:10 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/09 21:46:50 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/10 14:44:51 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,86 +16,109 @@
 #include "../inc/PresidentialPardonForm.hpp"
 #include "../inc/RobotomyRequestForm.hpp"
 
-int main(void) {
 
-	srand((unsigned int)time(NULL));
-
-	Bureaucrat bureaucrat[2] = { 
-									Bureaucrat("Norminet", 46),
-									Bureaucrat("Sophie", 1),
-								};
-
-	for (int i = 0; i < 2; i++) {
-
-		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << "---------------" << std::endl;
-		std::cout << "---------------------------" << std::endl;
-		std::cout << "----------------------------------------" << std::endl;
-		std::cout << "--------------------------------------------------------" << std::endl;
-		std::cout << std::endl << "		" << bureaucrat[i] << std::endl;
-		std::cout << "--------------------------------------------------------" << std::endl;
-		std::cout << "----------------------------------------" << std::endl;		
-		std::cout << "---------------------------" << std::endl;
-		std::cout << "---------------" << std::endl;
-		std::cout << std::endl;
-
-		try {
-
-			std::cout << "---------SHRUBBERY CREATION FORM----------" << std::endl << std::endl;
-
-			ShrubberyCreationForm A612("MyLoveForBobRoss");
-			std::cout << A612 << std::endl;
-		
-			bureaucrat[i].signForm(A612);
-			std::cout << A612 << std::endl;
-			bureaucrat[i].executeForm(A612);
-			std::cout << A612 << std::endl;
-
-
-			std::cout << std::endl;
-			std::cout << "---------ROBOTOMY REQUEST FORM----------" << std::endl << std::endl;
-			
-			RobotomyRequestForm B410("Bender");
-			std::cout << B410 << std::endl;
-		
-			bureaucrat[i].signForm(B410);
-			std::cout << B410 << std::endl;
-			bureaucrat[i].executeForm(B410);
-			std::cout << B410 << std::endl;
-			
-
-			std::cout << std::endl;
-			std::cout << "---------PRESIDENTIAL PARDON FORM----------" << std::endl << std::endl;
-			
-			PresidentialPardonForm PP01("Julian Assange");
-			std::cout << PP01 << std::endl;
-		
-			std::cout << std::endl;
-			bureaucrat[i].signForm(PP01);
-			std::cout << PP01 << std::endl;
-			bureaucrat[i].executeForm(PP01);
-			std::cout << PP01 << std::endl;
-		}
-		catch (std::exception &e) {
-			std::cerr << e.what() << std::endl;	
-		}
+bool checkFormInitAndError()
+{
+	Bureaucrat bob("Bob", 150);
+	Bureaucrat alice("Alice", 5);
+	ShrubberyCreationForm sForm("test");
+	if (sForm.getGradeToSign() != 145 || sForm.getGradeToExecute() != 137 || sForm.getTarget() != std::string("test"))
+		return false;
+	RobotomyRequestForm rForm("test");
+	if (rForm.getGradeToSign() != 72 || rForm.getGradeToExecute() != 45 || rForm.getTarget() != std::string("test"))
+		return false;
+	PresidentialPardonForm pForm("test");
+	if (pForm.getGradeToSign() != 25 || pForm.getGradeToExecute() != 5 || pForm.getTarget() != std::string("test"))
+		return false;
+	try
+	{
+		alice.executeForm(sForm);
+		return false;
 	}
-		
-
-	std::cout << std::endl;
-	std::cout << "---------TRYING TO SIGN A FORM TWICE----------" << std::endl << std::endl;
-	try {
-		RobotomyRequestForm B410("Bender");
-		std::cout << B410 << std::endl;
-		for (int i = 0; i < 2; i++) {
-			bureaucrat[i].signForm(B410);
-			std::cout << B410 << std::endl;
-		}
+	catch(const AForm::NotSignedException &e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << std::endl;	
+	try
+	{
+		alice.executeForm(rForm);
+		return false;
 	}
+	catch(const AForm::NotSignedException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	try
+	{
+		alice.executeForm(pForm);
+		return false;
+	}
+	catch(const AForm::NotSignedException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	alice.signForm(sForm);
+	alice.signForm(rForm);
+	alice.signForm(pForm);
+	try
+	{
+		bob.executeForm(sForm);
+		return false;
+	}
+	catch(const Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	try
+	{
+		bob.executeForm(rForm);
+		return false;
+	}
+	catch(const Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	try
+	{
+		bob.executeForm(pForm);
+		return false;
+	}
+	catch(const Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	return true;
+}
 
-	return 0;
+void checkExec()
+{
+	Bureaucrat bob("Bob", 150);
+	Bureaucrat alice("Alice", 5);
+	ShrubberyCreationForm sForm("shru");
+	PresidentialPardonForm pForm("pres");
+	RobotomyRequestForm rForm("req");
+	alice.signForm(sForm);
+	alice.signForm(rForm);
+	alice.signForm(pForm);
+	std::cout << std::endl << std::endl << std::endl;
+	std::cout << "ShrubberyCreationForm" << std::endl;
+	alice.executeForm(sForm);
+	std::cout << std::endl << std::endl << std::endl;
+	std::cout << "PresidentialPardonForm" << std::endl;
+	alice.executeForm(pForm);
+	std::cout << std::endl << std::endl << std::endl;
+	std::cout << "RobotomyRequestForm" << std::endl;
+	alice.executeForm(rForm);
+	alice.executeForm(rForm);
+	alice.executeForm(rForm);
+	alice.executeForm(rForm);
+	alice.executeForm(rForm);
+}
+
+int main(void)
+{
+	if (!checkFormInitAndError())
+		std::cout << "------------------UNEXPECTED--------------------------" << std::endl;
+	checkExec();
+    return (0);
 }
