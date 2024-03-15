@@ -6,32 +6,23 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 18:55:22 by srapin            #+#    #+#              #
-#    Updated: 2023/10/03 22:00:27 by srapin           ###   ########.fr        #
+#    Updated: 2024/03/15 22:01:53 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phoneBook
+NAME = convert
 
 CC = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 
 
 FILES = \
-		AMateria \
-		IceMateria \
-		CureMateria \
-		Character \
-		MateriaSource \
+		ScalarConverter \
 		main
+		
 
 
 INCLUDES_FILES = \
-		AMateria \
-		IceMateria \
-		CureMateria \
-		ICharacter \
-		Character \
-		MateriaSource \
-		IMateriaSource \
+		ScalarConverter \
 
 
 

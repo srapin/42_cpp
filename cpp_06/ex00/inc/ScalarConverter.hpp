@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:43:12 by srapin            #+#    #+#             */
-/*   Updated: 2023/10/04 00:07:19 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/15 21:35:36 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SCALARCONVERTER
 #include <iostream>
 #include <string>
+#include <string.h>
 # include <cstdlib>
 # include <cerrno>
 # include <cmath>
@@ -28,12 +29,13 @@
 class ScalarConverter
 {
 	protected:
-
-	public:
 		ScalarConverter();
         ScalarConverter(const ScalarConverter& other);
-        virtual ~ScalarConverter();
         ScalarConverter &operator=(const ScalarConverter& other);
+
+	public:
+        virtual ~ScalarConverter();
+		static void convert(const std::string &literal);
 		
 };
 
