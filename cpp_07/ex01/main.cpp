@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 21:07:56 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/20 16:38:54 by srapin           ###   ########.fr       */
+/*   Created: 2024/03/18 21:08:23 by srapin            #+#    #+#             */
+/*   Updated: 2024/03/20 16:42:28 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-#define ITER_HPP
+#include <iostream>
+#include "iter.hpp"
+
+
 
 template <typename T>
-void swap(T & a, T & b)
+void print(T i)
 {
-	T tmp = a;
-	a = b;
-	b = tmp;
+	std::cout << i << std::endl;
 }
 
-template <typename T>
-T min(T const &a, T const & b)
-{
-	if (a < b)
-		return a;
-	return b;
+int main( void ) {
+	int intArray[] = {5, 4, 3, 2, 1};
+	std::string  stringArray[] = {"lol", "waww", "\n"};
+	iter(intArray, 5, print);
+	iter(stringArray, 3, print);
+	iter(intArray, 2, print);
 }
-
-template <typename T>
-T max(T const &a, T const &b)
-{
-	if (a > b)
-		return a;
-	return b;
-}
-
-#endif

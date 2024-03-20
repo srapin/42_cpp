@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 21:07:56 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/20 16:38:54 by srapin           ###   ########.fr       */
+/*   Created: 2024/03/19 17:18:55 by srapin            #+#    #+#             */
+/*   Updated: 2024/03/19 17:22:07 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,10 @@
 #define ITER_HPP
 
 template <typename T>
-void swap(T & a, T & b)
+void iter(T *array, int lenght, void (*f) (T&))
 {
-	T tmp = a;
-	a = b;
-	b = tmp;
-}
-
-template <typename T>
-T min(T const &a, T const & b)
-{
-	if (a < b)
-		return a;
-	return b;
-}
-
-template <typename T>
-T max(T const &a, T const &b)
-{
-	if (a > b)
-		return a;
-	return b;
+	for (int i = 0; i < lenght; i++)
+		f(array[i]);
 }
 
 #endif
