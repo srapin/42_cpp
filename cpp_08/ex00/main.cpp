@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 21:08:23 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/21 13:42:54 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/24 23:37:59 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,23 @@ int main(void)
         vec.push_back(i % 10);
         lst.push_back(-i % 10);
     }
-    std::cout << easyfind(vec, 3) << std::endl;
-    std::cout << easyfind(vec, 11) << std::endl;
-    std::cout << easyfind(lst, -8) << std::endl;
-    std::cout << easyfind(lst, 11) << std::endl;
+    std::cout << *easyfind(vec, 3) << std::endl;
+    try
+    {
+        std::cout << *easyfind(vec, 11) << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    std::cout << *easyfind(lst, -8) << std::endl;
+    try
+    {
+        std::cout << *easyfind(lst, 11) << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
 }
