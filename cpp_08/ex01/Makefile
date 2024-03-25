@@ -6,27 +6,56 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2024/03/22 18:14:34 by srapin           ###   ########.fr        #
+#    Updated: 2024/03/24 23:52:53 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -std=c++98 -Wall -Wextra -Werror -g3
-
-NAME = array
-CC = c++
-SRCS = \
-	Span.cpp\
-	main.cpp\
-
-OBJS = $(SRCS:.cpp=.o)
+NAME		= easyfind
 	
-$(NAME): $(OBJS)
-	$(CC) $(FLAGS) $^ -o $@
+CC			= c++
+FLAGS		= -Wall -Wextra -Werror -std=c++98
+RM			= rm -rf
+
+OBJDIR = obj
+
+FILES		= main \
+			Span
+
+HEADER_FILE	= Span
+
+SRC			= $(FILES:=.cpp)
+OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
+HDR			= $(HEADER_FILE:=.hpp)
+
+#Colors:
+GREEN		=	\e[92;5;118m
+YELLOW		=	\e[93;5;226m
+GRAY		=	\e[33;2;37m
+RESET		=	\e[0m
+CURSIVE		=	\e[33;3m
+
+#Debug 
+ifeq ($(DEBUG), 1)
+   OPTS = -g
+endif
+
+.PHONY: all clean fclean re
+
+all: $(NAME)
+
+$(NAME): $(OBJ) $(HEADER)
+	@$(CC) $(OBJ) $(OPTS) -o $(NAME)
+	@printf "$(_SUCCESS) $(GREEN)- Executable ready.\n$(RESET)"
+
+$(OBJDIR)/%.o: %.cpp $(HEADER)
+	@mkdir -p $(dir $@)
+	@$(CC) $(FLAGS) $(OPTS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@$(RM) $(OBJDIR) $(OBJ)
+	
 
 fclean: clean
-	rm -f $(NAME)
-	
-re: fclean $(NAME)
+	@$(RM) $(NAME)
+
+re: fclean all
