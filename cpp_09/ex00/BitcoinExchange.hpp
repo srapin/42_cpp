@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 00:15:16 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/26 05:05:41 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/26 05:16:14 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ class Date : public std::string
         // Date &operator=(const Date& other);
         Date(std::string input);
         
-    bool operator<(const Date &nbr);
-    bool operator==(const Date &nbr);
+    // bool operator<(const Date &nbr);
+    // bool operator==(const Date &nbr);
     // bool operator>(const Date &nbr);
     // bool operator!=(const Date &nbr);
     // bool operator<=(const Date &oth);

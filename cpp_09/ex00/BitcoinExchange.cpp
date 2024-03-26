@@ -67,7 +67,7 @@ BitcoinExchange::BitcoinExchange(std::string input_file)
 		exit(1);
 	}
 	for (auto line : _db)
-		std::cout << line.first._input;
+		std::cout << line.first._input << std::endl;
 
 	// for( std::string line; std::getline( input, line ); )
 	// {

@@ -6,14 +6,15 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 02:16:47 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/26 05:05:04 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/26 05:15:02 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-Date::Date(std::string input)
+Date::Date(std::string input) : std::string(input.c_str())
 {
+    // *this = input;
 	_input = input;
 	if (input.empty() || input.size() != 10 || input[4] != '-' || input[7] != '-')
         throw InvalidFormat();
