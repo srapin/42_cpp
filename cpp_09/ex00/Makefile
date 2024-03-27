@@ -6,14 +6,14 @@
 #    By: srapin <srapin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 22:14:25 by srapin            #+#    #+#              #
-#    Updated: 2024/03/26 04:59:35 by srapin           ###   ########.fr        #
+#    Updated: 2024/03/27 16:01:37 by srapin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= btc
 	
 CC			= c++
-FLAGS		= -Wall -Wextra -Werror -g3 #std=c++98 
+FLAGS		= -Wall -Wextra -Werror -g3 -std=c++98 
 RM			= rm -rf
 
 OBJDIR = obj

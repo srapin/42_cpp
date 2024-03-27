@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 00:15:16 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/26 05:16:14 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/27 16:52:15 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,11 @@ class Date : public std::string
         int y;
         
     public :
-        std::string _input;
         Date() {};
         // Date(const Date& other) {(void) other;};
         // ~Date() {};
         // Date &operator=(const Date& other);
         Date(std::string input);
-        
-    // bool operator<(const Date &nbr);
-    // bool operator==(const Date &nbr);
-    // bool operator>(const Date &nbr);
-    // bool operator!=(const Date &nbr);
-    // bool operator<=(const Date &oth);
-    // bool operator>=(const Date &oth);
     
 
     class InvalidFormat : public std::exception
@@ -69,6 +61,13 @@ class BitcoinExchange
         std::ifstream _inputFile;
         float _v;
         Date _d;
+        typedef enum parseError{
+            none,
+            neg,
+            tobig,
+        } parsError;
+        parsError _e;
+        void printErr(std::string line);
         
 	protected:
 
@@ -81,11 +80,25 @@ class BitcoinExchange
         BitcoinExchange &operator=(const BitcoinExchange& other);
         void checkOpen(std::string file, std::ifstream *stream, std::string toCheck);
         void setDb();
+        void output();
+        void treatLine(std::string line);
+        float getNumber(std::string nb_str);
+        void checkNumber(std::string nb_str);
 
-        class InvalidFile : public std::exception
+        class InvalidInputFile : public std::exception
         {
         public:
-            virtual const char *what() const throw() { return "Not a valid file"; };
+            virtual const char *what() const throw() { return "Bad input file."; };
+        };
+        class InvalidDb : public std::exception
+        {
+            public:
+                virtual const char *what() const throw() { return "Failed to create database."; };
+        };
+        class lineError : public std::exception
+        {
+            public:
+                virtual const char* what() const throw() {return "Error: ";};
         };
 };
 

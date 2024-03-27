@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 02:16:47 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/26 05:15:02 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/27 16:00:29 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 Date::Date(std::string input) : std::string(input.c_str())
 {
-    // *this = input;
-	_input = input;
 	if (input.empty() || input.size() != 10 || input[4] != '-' || input[7] != '-')
         throw InvalidFormat();
     std::string year = input.substr(0, 4);
@@ -32,22 +30,22 @@ Date::Date(std::string input) : std::string(input.c_str())
         throw InvalidDate();
 }
 
-bool Date::operator<(const Date &oth)
-{
-    std::cout << "called";
-    if (y != oth.y)
-        return (y < oth.y);
-    if (m != oth.m)
-        return (m < oth.m);
-    if (d != oth.d)
-        return (d < oth.d);
-    return false;
-}
+// bool Date::operator<(const Date &oth)
+// {
+//     std::cout << "called";
+//     if (y != oth.y)
+//         return (y < oth.y);
+//     if (m != oth.m)
+//         return (m < oth.m);
+//     if (d != oth.d)
+//         return (d < oth.d);
+//     return false;
+// }
 
-bool Date::operator==(const Date &oth)
-{
-    return (y == oth.y && m ==oth.m && d==oth.d);
-}
+// bool Date::operator==(const Date &oth)
+// {
+//     return (y == oth.y && m ==oth.m && d==oth.d);
+// }
 
 // bool Date::operator!=(const Date &oth)
 // {
