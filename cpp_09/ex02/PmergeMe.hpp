@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 17:19:15 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/29 20:30:21 by srapin           ###   ########.fr       */
+/*   Updated: 2024/03/30 18:03:00 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ class PmergeMe
         ~PmergeMe();
         // PmergeMe &operator=(const PmergeMe& other);
 		void sort();
-		void fordJonhson(int start, int end);
+		void fordJonhson(int start, int end, int);
 		void sort2elem(int , int );
+		void exchangeGroup(int , int , int);
 		// void sortPaires(int b, int e, int mid);
 		void sortPaires(int b, int e);
+		void fordJonhson(std::vector<int> &v, int);
+		void excludeElem(std::vector<int> &, std::vector<int> &, int range);
+		void sortGroup(std::vector<int> &v, int gap);
 };
 
 #endif
