@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 17:19:39 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/30 18:10:09 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/01 16:32:42 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ void PmergeMe::sortGroup(std::vector<int> &v, int dist)
 	}
 }
 
+int PmergeMe::jacobsthalNumber(int prev, int prefOfprev)
+{
+	return (2 *prefOfprev + prev);
+    return 0;
+}
+
 void PmergeMe::exchangeGroup(int f, int s, int groupSize)
 {
 	if (_vec[f] > _vec[s])
@@ -89,6 +95,43 @@ void PmergeMe::exchangeGroup(int f, int s, int groupSize)
 	}
 }
 
+size_t dichotomyInsetrion(std::vector<int> &v, int key, int start, int end, int gap)
+{
+	size_t i;
+	int size = end - start + 1;
+	
+	if (size < 0 || size <= gap)
+        size = 0;
+		
+	if ((size / gap) % 2 == 1)
+	{
+        i = start + ((size - 1) / 2) + (gap / 2);
+		
+	}
+    else
+        i = start + (size / 2) + (gap - 1);
+		
+	if (i >= v.size())
+		i = v.size() - 1;
+		
+	if (size && key < v[i])
+		return dichotomyInsetrion(v, key, start, i-gap, gap);
+	else if (size)
+		return dichotomyInsetrion(v, key, i + 1, end, gap);
+
+		
+	if (i >= v.size() - 1 && v[i] < key)
+		return (v.size()); //inserer a la fin
+	else if (key > v[i])
+		i += gap;
+	else if (i  <(size_t) gap && key < v[i])
+		return 0;
+	else if (i%gap)
+		i++;
+	return (i);
+	
+}
+
 void PmergeMe::fordJonhson(std::vector<int> &v, int groupSize)
 {
 	std::vector<int> alone; //elem that have no friend
@@ -96,11 +139,51 @@ void PmergeMe::fordJonhson(std::vector<int> &v, int groupSize)
 		return;
 	excludeElem(v, alone, groupSize);
 	sortGroup(v, groupSize / 2);
-	fordJonhson(v, groupSize * 2);
-	
-	for (size_t i = 0; i < v.size(); i++)
-		std::cout << v[i] << " ";
+		// return;
+	int j = 0;
+	for (size_t i = groupSize/2 - 1; i < v.size(); i+= groupSize/2)
+	{
+		if (!(j % 2))
+			std::cout << "(";
+		std::cout << v[i];
+		if (j % 2)
+			std::cout << ")";
+		std::cout << " ";
+		j++;
+	}
 	std::cout << "    " <<  groupSize << std::endl;
+	
+	fordJonhson(v, groupSize * 2);
+	groupSize/= 2;
+
+	std::vector<int> smaller; //small nb of each pair
+	for (size_t i = 0; i < v.size() && groupSize/ 2 > 0; i += groupSize/2)
+    {
+        smaller.insert(smaller.end(), v.begin() + i, v.begin() + i + groupSize/2);
+        v.erase(v.begin() + i, v.begin() + i + groupSize / 2 );
+    }
+	
+	// size_t i = groupSize/2 - 1;
+	for (int i = 7;  i < 14 && groupSize / 2 > 0; i++)
+		std::cout << dichotomyInsetrion(v, i, 0, v.size()-1,groupSize/2 )  << std::endl;
+	// while(smaller.size() > 0)
+	// {
+	// 	std::vector<int> toInsert(smaller.begin() + i - groupSize /2 - 1, smaller.begin() + i -1); //small nb of each pair
+		
+	// }
+	// for (size_t i = 0; i < v.size(); i++)
+	// {
+	// 	std::cout << v[i];
+	// 	std::cout << " ";
+	// }
+	std::cout << "    //   ";
+	// for (size_t i = 0; i < toInsert.size(); i++)
+	// {
+	// 	std::cout << toInsert[i];
+	// 	std::cout << " ";
+	// }
+	// std::cout << std::endl;
+	
 }
 
 //( 1 2) (3 4 ) (5 6 ) (7 8 )9
