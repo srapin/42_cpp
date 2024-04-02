@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 17:19:15 by srapin            #+#    #+#             */
-/*   Updated: 2024/04/01 12:54:48 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/02 01:42:33 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ class PmergeMe
 		void fordJonhson(std::vector<int> &v, int);
 		void excludeElem(std::vector<int> &, std::vector<int> &, int range);
 		void sortGroup(std::vector<int> &v, int gap);
-		int jacobsthalNumber(int prev, int prefOfprev);
+		int jacobsthalNumber(int n);
+		// size_t getNextIndice(bool reset)
 };
 
 #endif

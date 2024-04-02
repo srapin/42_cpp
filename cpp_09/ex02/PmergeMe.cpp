@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 17:19:39 by srapin            #+#    #+#             */
-/*   Updated: 2024/04/01 16:32:42 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/02 02:24:02 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ PmergeMe::PmergeMe(int ac, char **av)
 	for (int i = 0; i < ac; i++)
 		_vec.push_back(atoi(av[i]));
 	sort();
+	std::cout  << std::endl;
 }
 
 // PmergeMe::PmergeMe(const PmergeMe &other)
@@ -80,10 +81,11 @@ void PmergeMe::sortGroup(std::vector<int> &v, int dist)
 	}
 }
 
-int PmergeMe::jacobsthalNumber(int prev, int prefOfprev)
+int PmergeMe::jacobsthalNumber(int n)
 {
-	return (2 *prefOfprev + prev);
-    return 0;
+	if (n <= 1)
+		return (n);
+	return (2 * jacobsthalNumber(n - 2) + jacobsthalNumber(n - 1));
 }
 
 void PmergeMe::exchangeGroup(int f, int s, int groupSize)
@@ -99,37 +101,20 @@ size_t dichotomyInsetrion(std::vector<int> &v, int key, int start, int end, int 
 {
 	size_t i;
 	int size = end - start + 1;
+	int nbGroupes = size/gap;
+	// std::cout << "nb group" << nbGroupes << " size " << size << " gap " << gap << std::endl;
 	
-	if (size < 0 || size <= gap)
-        size = 0;
-		
-	if ((size / gap) % 2 == 1)
+	if (nbGroupes <= 1) //return
 	{
-        i = start + ((size - 1) / 2) + (gap / 2);
-		
+		if (key > v[start + gap - 1] )
+			return start + gap;
+		return start;
 	}
-    else
-        i = start + (size / 2) + (gap - 1);
-		
-	if (i >= v.size())
-		i = v.size() - 1;
-		
-	if (size && key < v[i])
+	i = start + (nbGroupes / 2) * gap - 1;
+	if (key < v[i])
 		return dichotomyInsetrion(v, key, start, i-gap, gap);
-	else if (size)
+	else
 		return dichotomyInsetrion(v, key, i + 1, end, gap);
-
-		
-	if (i >= v.size() - 1 && v[i] < key)
-		return (v.size()); //inserer a la fin
-	else if (key > v[i])
-		i += gap;
-	else if (i  <(size_t) gap && key < v[i])
-		return 0;
-	else if (i%gap)
-		i++;
-	return (i);
-	
 }
 
 void PmergeMe::fordJonhson(std::vector<int> &v, int groupSize)
@@ -139,20 +124,6 @@ void PmergeMe::fordJonhson(std::vector<int> &v, int groupSize)
 		return;
 	excludeElem(v, alone, groupSize);
 	sortGroup(v, groupSize / 2);
-		// return;
-	int j = 0;
-	for (size_t i = groupSize/2 - 1; i < v.size(); i+= groupSize/2)
-	{
-		if (!(j % 2))
-			std::cout << "(";
-		std::cout << v[i];
-		if (j % 2)
-			std::cout << ")";
-		std::cout << " ";
-		j++;
-	}
-	std::cout << "    " <<  groupSize << std::endl;
-	
 	fordJonhson(v, groupSize * 2);
 	groupSize/= 2;
 
@@ -163,47 +134,56 @@ void PmergeMe::fordJonhson(std::vector<int> &v, int groupSize)
         v.erase(v.begin() + i, v.begin() + i + groupSize / 2 );
     }
 	
-	// size_t i = groupSize/2 - 1;
-	for (int i = 7;  i < 14 && groupSize / 2 > 0; i++)
-		std::cout << dichotomyInsetrion(v, i, 0, v.size()-1,groupSize/2 )  << std::endl;
-	// while(smaller.size() > 0)
-	// {
-	// 	std::vector<int> toInsert(smaller.begin() + i - groupSize /2 - 1, smaller.begin() + i -1); //small nb of each pair
-		
-	// }
-	// for (size_t i = 0; i < v.size(); i++)
-	// {
-	// 	std::cout << v[i];
-	// 	std::cout << " ";
-	// }
-	std::cout << "    //   ";
-	// for (size_t i = 0; i < toInsert.size(); i++)
-	// {
-	// 	std::cout << toInsert[i];
-	// 	std::cout << " ";
-	// }
-	// std::cout << std::endl;
 	
+	size_t place;	
+	int prevJac = -1;
+	int currentJac = jacobsthalNumber(3);
+	int i = currentJac;
+	int jacCount = 4;
+	
+	
+	do
+	{
+		if (!smaller.size())
+			break;
+		while((size_t) i * groupSize/2 + groupSize/2 > smaller.size())
+			i--;
+		for (; i > prevJac; i--)
+		{
+			place = dichotomyInsetrion(v, smaller[i * groupSize/2 + groupSize/2 - 1], 0, v.size() - 1, groupSize /2);
+			v.insert(v.begin() + place, smaller.begin() + i * groupSize/2, smaller.begin() + i * groupSize/2 + groupSize/2);	
+		}
+		prevJac = currentJac;
+		currentJac = jacobsthalNumber(jacCount);
+		i = currentJac;
+		jacCount++;
+	} while((size_t) prevJac * groupSize/2 + groupSize/2 < smaller.size());
+	
+	if (alone.size())
+	{
+		place = dichotomyInsetrion(v, alone[alone.size() - 1], 0, v.size() - 1, groupSize /2);
+		v.insert(v.begin() + place, alone.begin(), alone.end());
+	}
+	std::cout << "    //   ";
 }
 
-//( 1 2) (3 4 ) (5 6 ) (7 8 )9
-
-// void PmergeMe::fordJonhson(int start, int end, int groupSize)
-// {
-	
-// 	if (start >= end)
-// 		return ;
-// 	for (int i = start; i < end; i += groupSize)
-// 		sort2elem(i, i + 1);
-// 	fordJonhson(start, end, groupSize *2);
-	
-// 	sortPaires(0, _vec.size() - 2);
-// }
 
 
 
 void PmergeMe::sort2elem(int f, int s)
 {
+	// int j = 0;
+	// for (size_t i = groupSize/2 - 1; i < v.size(); i+= groupSize/2)
+	// {
+	// 	if (!(j % 2))
+	// 		std::cout << "(";
+	// 	std::cout << v[i];
+	// 	if (j % 2)
+	// 		std::cout << ")";
+	// 	std::cout << " ";
+	// 	j++;
+	// }
+	// std::cout << "    " <<  groupSize << std::endl;
 	if (_vec[f] > _vec[s])
 		std::swap(_vec[f], _vec[s]);
 }
@@ -246,6 +226,3 @@ void PmergeMe::sortPaires(int b, int e)
 PmergeMe::~PmergeMe()
 {
 }
-
-// b1 a1 a2
-//b2?
