@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 17:19:15 by srapin            #+#    #+#             */
-/*   Updated: 2024/04/02 01:42:33 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/04 18:22:06 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,20 @@ class PmergeMe
         // PmergeMe(const PmergeMe& other);
         ~PmergeMe();
         // PmergeMe &operator=(const PmergeMe& other);
+
+
+		
 		void sort();
-		void fordJonhson(int start, int end, int);
-		void sort2elem(int , int );
 		void exchangeGroup(int , int , int);
-		// void sortPaires(int b, int e, int mid);
-		void sortPaires(int b, int e);
-		void fordJonhson(std::vector<int> &v, int);
-		void excludeElem(std::vector<int> &, std::vector<int> &, int range);
-		void sortGroup(std::vector<int> &v, int gap);
-		int jacobsthalNumber(int n);
-		// size_t getNextIndice(bool reset)
+        void fordJonhson(std::vector<int> &v, int);
+		
+        void excludeElem(std::vector<int> &, std::vector<int> &, int range);
+        void excludeSmaller(std::vector<int> &v, std::vector<int> &smaller, int step);
+		void insertExclude(std::vector<int> &v, std::vector<int> &alone, int step);
+		void insertSmaller(std::vector<int> &v, std::vector<int> &smaller, int step);
+        void sortGroup(std::vector<int> &v, int gap);
+        int jacobsthalNumber(int n);
+		void getJacobsthalOrder(std::vector<int> &v, int step);
 };
 
 #endif
