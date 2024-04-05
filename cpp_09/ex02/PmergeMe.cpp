@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 17:19:39 by srapin            #+#    #+#             */
-/*   Updated: 2024/04/05 18:18:15 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/05 22:03:37 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,40 @@ PmergeMe::PmergeMe(/* args */)
 PmergeMe::PmergeMe(int ac, char **av)
 {
 	_startTime = clock();
-	std::cout << "Before : ";
+	// std::cout << "Before : ";
+	// for (int i = 0; i < ac; i++)
+	// {
+	// 	_vec.push_back(atoi(av[i]));
+	// 	std::cout << _vec[i] << " ";
+	// }
+	// sortVector();
+	// std::cout << "After : \n";
+	// for (size_t i = 0; i < _vec.size(); i++)
+	// {
+	// 	std::cout << _vec[i] <<  " ";
+	// 	if ((i && _vec[i] < _vec[i - 1]))
+	// 		return;
+	// }
+	// std::cout  << std::endl;
+	// std::cout << "Time to process a range of "<< ac <<" elements with std::vector : " << clock() - _startTime << " us\n";
+	// 	std::cout << _vec.size() << "  " << ac;
 	for (int i = 0; i < ac; i++)
 	{
-		_vec.push_back(atoi(av[i]));
-		std::cout << _vec[i] << " ";
+		_lst.push_back(atoi(av[i]));
+		std::cout << *getListIterator(_lst, i) << " ";
 	}
-	sort();
-	std::cout << "After : \n";
-	for (size_t i = 0; i < _vec.size(); i++)
+	std::cout << std::endl;
+	sortList();
+	for (int i = 0; i < ac; i++)
 	{
-		std::cout << _vec[i] <<  " ";
-		if ((i && _vec[i] < _vec[i - 1]))// || _vec.size() != static_cast<long unsigned int>(ac))
+		std::cout << *getListIterator(_lst, i) << " ";
+		if ((i && *getListIterator(_lst, i) < *getListIterator(_lst, i- 1)))
+		{
+			std::cout << "oup<\n";
 			return;
+		}
 	}
-	// if (_vec.size() != (size_t) ac)
-	std::cout  << std::endl;
-	std::cout << "Time to process a range of "<< ac <<" elements with std::vector : " << clock() - _startTime << " us\n";
-		std::cout << _vec.size() << "  " << ac;
+	std::cout <<std::endl << _lst.size() << "  " << ac;
 }
 
 // PmergeMe::PmergeMe(const PmergeMe &other)
@@ -50,15 +66,15 @@ PmergeMe::PmergeMe(int ac, char **av)
 // 	return (*this);
 // }
 
-void PmergeMe::sort()
+void PmergeMe::sortVector()
 {
 	if (_vec.size() < 2)
 		return ;
-	fordJonhson(_vec, 2);
+	fordJonhsonVector(_vec, 2);
 }
 
 /// @brief move elem that can not be paired
-void PmergeMe::excludeElem(std::vector<int> &v, std::vector<int> & alone, int groupSize)
+void PmergeMe::excludeElemVector(std::vector<int> &v, std::vector<int> & alone, int groupSize)
 {
 	if (v.size() % groupSize) //-> some elem won t have a match
 	{
@@ -67,7 +83,7 @@ void PmergeMe::excludeElem(std::vector<int> &v, std::vector<int> & alone, int gr
 	}
 }
 
-void PmergeMe::excludeSmaller(std::vector<int> &v, std::vector<int> &smaller, int step)
+void PmergeMe::excludeSmallerVector(std::vector<int> &v, std::vector<int> &smaller, int step)
 {
 	for (size_t i = 0; i < v.size() && step > 0; i += step)
     {
@@ -77,8 +93,8 @@ void PmergeMe::excludeSmaller(std::vector<int> &v, std::vector<int> &smaller, in
 }
 
 
-//sort pair
-void PmergeMe::sortGroup(std::vector<int> &v, int dist)
+//sortVector pair
+void PmergeMe::sortGroupVector(std::vector<int> &v, int dist)
 {
 	for (size_t i = dist - 1; i + dist < v.size(); i += 2 * dist)
 	{
@@ -121,19 +137,154 @@ void PmergeMe::getJacobsthalOrder(std::vector<int> &v, int size)
 	}
 }
 
-//exchange two groupe of size groupSize
-void PmergeMe::exchangeGroup(int f, int s, int groupSize)
+void PmergeMe::sortList()
 {
-	if (_vec[f] > _vec[s])
+	if (_lst.size() < 2)
+		return ;
+	fordJonhsonList(_lst, 2);
+}
+
+std::list<int>::iterator PmergeMe::getListIterator(std::list<int> lst, int move)
+{
+	std::list<int>::iterator it = lst.begin();
+	std::advance(it, move);
+
+	// while(move--);
+	// 	it++;
+    return it;
+}
+
+std::list<int>::iterator next(std::list<int>::iterator it, int step)
+{
+    
+	while (++step < 0)
+		it--;
+	while (--step > 0)
+		it++;
+    
+    return (it);
+}
+
+void PmergeMe::fordJonhsonList(std::list<int> &l, int groupSize)
+{
+	int step = groupSize/2;
+	if (l.size() / groupSize < 1) //=> vector is sortVectored
+		return;
+		
+	std::list<int> alone;
+	excludeElemList(l, alone, groupSize);
+	sortGroupList(l, step);
+	fordJonhsonList(l, groupSize * 2);
+	groupSize/= 2;
+	step = groupSize/2;
+	if (!step)
 	{
-		for (int i = 0; i < groupSize; i++)
-			std::swap(_vec[f - i], _vec[s - i]);
+		insertExcludeList(l, alone, 1);
+		return;
+	}
+	std::list<int> smaller;
+	excludeSmallerList(l, smaller, step);
+	insertSmallerList(l, smaller, step);
+	insertExcludeList(l, alone, step);
+	
+	// std::vector<int> alone; //elem that have no friend
+	
+
+
+	// insertExcludeVector(v, alone, step);
+}
+
+void PmergeMe::excludeElemList(std::list<int> &l, std::list<int> &alone, int range)
+{
+	if (l.size() % range) //-> some elem won t have a match
+	{
+		alone.insert(alone.begin(), next(l.end(), - (l.size() % range + 1)), l.end());
+		l.erase(next(l.end(), - (l.size() % range + 1)), l.end());
+	}
+}
+
+void PmergeMe::excludeSmallerList(std::list<int> &l, std::list<int> &smaller, int step)
+{
+	for (size_t i = 0; i < l.size() && step > 0; i += step)
+    {
+        smaller.insert(smaller.end(), next(l.begin(), i),next(l.begin(), i + step));
+        l.erase(next(l.begin(), i),next(l.begin(), i + step));
+    }
+}
+
+void PmergeMe::insertExcludeList(std::list<int> &l, std::list<int> &alone, int step)
+{
+	if (alone.size())
+	{
+		for (size_t i = step - 1; i < alone.size(); i += step)
+		{
+			size_t place = dichotomyInsetrionList(l, *next(alone.begin(), i), 0, l.size() - 1, step);
+			// int j = *(alone.begin() + i- (step - 1));
+			l.insert(next(l.begin(), place), next( alone.begin(), i - (step - 1)),next( alone.begin(),i + 1));
+			
+		}
+	}
+}
+
+void PmergeMe::insertSmallerList(std::list<int> &l, std::list<int> &smaller, int step)
+{
+	size_t place;
+	size_t i;
+	size_t keyIndice;
+	std::vector<int> insertionOrder;
+	int bigger = 0;
+	int alreadyInserted = 0;
+	getJacobsthalOrder(insertionOrder, smaller.size()/ step);
+
+
+	for (std::vector<int>::iterator toInsert = insertionOrder.begin(); toInsert != insertionOrder.end(); toInsert++)
+	{
+		i = (*toInsert) * step;
+		keyIndice = i + step - 1;
+		if (keyIndice >= smaller.size())
+			continue;
+		
+		// i - pair + (already_put * pair) - (count_bigger * pair)
+		place = dichotomyInsetrionList(l,*next(smaller.begin(), keyIndice), 0, keyIndice + alreadyInserted * step - bigger * step, step);
+		l.insert(next(l.begin(), place) , next(smaller.begin(), i), next(smaller.begin(), keyIndice+1) );	
+		if (*next(smaller.begin(), keyIndice) >= *next(l.begin(),keyIndice + alreadyInserted * step))
+			bigger++;
+		alreadyInserted++;
+		if (toInsert != insertionOrder.begin() && *toInsert > *(toInsert-1))
+			bigger = 0;
 	}
 }
 
 
+
+void PmergeMe::swap_range_list(std::list<int> &lst, int first, int second, int size)
+{
+    // swap_range_list(list, i - pair + 1, i, i + 1, i + pair);
+    std::list<int>::iterator itFirst = lst.begin();
+	std::advance(itFirst, first);
+
+    std::list<int>::iterator itSecond = lst.begin(); // getListIterator(lst, start2);
+	std::advance(itSecond, second);
+
+    std::list<int> tmp(itSecond, next(itSecond, size));
+    std::copy(itFirst, next(itFirst, size), itSecond);
+    std::copy(tmp.begin(), tmp.end(), itFirst);
+}
+
+void PmergeMe::sortGroupList(std::list<int> &l, int dist)
+{
+	for (size_t i = dist - 1; i + dist < l.size(); i += 2 * dist)
+	{
+		if (*getListIterator(l, i) > *getListIterator(l, i + dist) )
+		{
+			swap_range_list(l, i - (dist - 1), i + 1, dist);
+			
+		}
+	}
+}
+
 //find where to insert a group
-size_t dichotomyInsetrion(std::vector<int> &v, int key, int start, int end, int step)
+size_t PmergeMe::dichotomyInsetrionVector(std::vector<int> &v, int key, int start, int end, int step)
 {
 	size_t i;
 	int size = end - start + 1;
@@ -149,19 +300,40 @@ size_t dichotomyInsetrion(std::vector<int> &v, int key, int start, int end, int 
 	
 	i = start + (nbGroupes / 2) * step - 1;
 	if (key < v[i])
-		return dichotomyInsetrion(v, key, start, i - step, step);
+		return dichotomyInsetrionVector(v, key, start, i - step, step);
 	else
-		return dichotomyInsetrion(v, key, i + 1, end, step);
+		return dichotomyInsetrionVector(v, key, i + 1, end, step);
 }
 
 
-void PmergeMe::insertExclude(std::vector<int> &v, std::vector<int> &alone, int step)
+size_t PmergeMe::dichotomyInsetrionList(std::list<int> &l, int key, int start, int end, int step)
+{
+	size_t i;
+	int size = end - start + 1;
+	
+	int nbGroupes = size/step;
+	
+	if (nbGroupes <= 1) //stop condition
+	{
+		if (key > *getListIterator(l, start + step - 1))
+			return start + step;
+		return start;
+	}
+	
+	i = start + (nbGroupes / 2) * step - 1;
+	if (key <*getListIterator(l, i))
+		return dichotomyInsetrionList(l, key, start, i - step, step);
+	else
+		return dichotomyInsetrionList(l, key, i + 1, end, step);
+}
+
+void PmergeMe::insertExcludeVector(std::vector<int> &v, std::vector<int> &alone, int step)
 {
 	if (alone.size())
 	{
 		for (size_t i = step - 1; i < alone.size(); i += step)
 		{
-			size_t place = dichotomyInsetrion(v, alone[i], 0, v.size() - 1, step);
+			size_t place = dichotomyInsetrionVector(v, alone[i], 0, v.size() - 1, step);
 			// int j = *(alone.begin() + i- (step - 1));
 			v.insert(v.begin() + place, alone.begin() + i - (step - 1), alone.begin() + i + 1);
 			
@@ -170,16 +342,14 @@ void PmergeMe::insertExclude(std::vector<int> &v, std::vector<int> &alone, int s
 }
 
 
-
-
-void PmergeMe::insertSmaller(std::vector<int> &v, std::vector<int> &smaller, int step)
+void PmergeMe::insertSmallerVector(std::vector<int> &v, std::vector<int> &smaller, int step)
 {
 	size_t place;
 	size_t i;
 	size_t keyIndice;
 	std::vector<int> insertionOrder;
-	// smaller.size()/ step;
-	// getJacobsthalOrder(insertionOrder, 80);
+	int bigger = 0;
+	int alreadyInserted = 0;
 	getJacobsthalOrder(insertionOrder, smaller.size()/ step);
 	// insertionOrder.clear();
 	// for (int i = 0; i < smaller.size()/step; i++)
@@ -193,44 +363,44 @@ void PmergeMe::insertSmaller(std::vector<int> &v, std::vector<int> &smaller, int
 		if (keyIndice >= smaller.size())
 			continue;
 		
-		place = dichotomyInsetrion(v, smaller[keyIndice], 0, v.size() - 1, step);
+		// i - pair + (already_put * pair) - (count_bigger * pair)
+		place = dichotomyInsetrionVector(v, smaller[keyIndice], 0, keyIndice + alreadyInserted * step - bigger * step, step);
 		v.insert(v.begin() + place, smaller.begin() + i, smaller.begin() + keyIndice + 1);	
-		// if (smaller[i * step + step - 1] >= v[i + alreadyInsert * step])
-		// 	bigger++;
-		// alreadyInsert++;
-		
+		if (smaller[keyIndice] >= v[keyIndice + alreadyInserted * step])
+			bigger++;
+		alreadyInserted++;
+		if (toInsert != insertionOrder.begin() && *toInsert > *(toInsert-1))
+			bigger = 0;
 	}
 		
 	
 }
 
 
-//exectue fordJonhsonAlgorithme
-void PmergeMe::fordJonhson(std::vector<int> &v, int groupSize)
+//exectue fordJonhsonVectorAlgorithme
+void PmergeMe::fordJonhsonVector(std::vector<int> &v, int groupSize)
 {
 	
 	//represent step between significatif elem in paires
 	int step = groupSize/2;
-	if (v.size() / groupSize < 1) //=> vector is sorted
+	if (v.size() / groupSize < 1) //=> vector is sortVectored
 		return;
 		
 	std::vector<int> alone; //elem that have no friend
-	excludeElem(v, alone, groupSize);
-	sortGroup(v, step);
+	excludeElemVector(v, alone, groupSize);
+	sortGroupVector(v, step);
 	
-	fordJonhson(v, groupSize * 2);
+	fordJonhsonVector(v, groupSize * 2);
 
 	groupSize/= 2;
 	step = groupSize/2;
 	if (!step)
 		return;
+
 	std::vector<int> smaller;
-	excludeSmaller(v, smaller, step);
-	insertSmaller(v, smaller, step);
-	
-	insertExclude(v, alone, step);
-	
-	std::cout << "    //   ";
+	excludeSmallerVector(v, smaller, step);
+	insertSmallerVector(v, smaller, step);
+	insertExcludeVector(v, alone, step);
 }
 
 
