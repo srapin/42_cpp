@@ -1,17 +1,19 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(/* args */)
+BitcoinExchange::BitcoinExchange()
 {
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 {
 	(void)other;
+	throw InvalidUsage();
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
 	(void)other;
+	throw InvalidUsage();
 	return (*this);
 }
 
@@ -22,8 +24,8 @@ void BitcoinExchange::printErr(std::string line)
 		std::cerr << "not a positive number.";
 	else if (_e == tobig)
 		std::cerr << "too large a number.";
-	else 
-		std::cerr << "bad input: =>" << line;
+	else
+		std::cerr << "bad input =>" << line;
 	std::cerr << std::endl;
 }
 
@@ -49,9 +51,7 @@ float BitcoinExchange::getNumber(std::string nb_str)
 		throw lineError();
 	if (nb_str.find_first_not_of("0123456789.-") != std::string::npos)
 		throw lineError();
-
 	nb = atof(nb_str.c_str());
-
 	if (nb < 0)
 	{
 		_e = neg;
@@ -65,11 +65,13 @@ float BitcoinExchange::getNumber(std::string nb_str)
 	return (nb);
 }
 
+
+
 void BitcoinExchange::treatLine(std::string line)
 {
-	int	sep;
+	int		sep;
 	float	nb;
-	Date d;
+	Date	d;
 
 	sep = line.find("|");
 	_e = none;
@@ -80,17 +82,17 @@ void BitcoinExchange::treatLine(std::string line)
 	}
 	catch (const std::exception &e)
 	{
-		return printErr(line);
+		return (printErr(line));
 	}
 	std::map<Date, float>::iterator it = _db.begin();
-	while(it != _db.end() && (*it).first < d)
+	while (it != _db.end() && (*it).first < d)
 	{
 		it++;
 	}
 	if (!((*it).first == d))
 		*it--;
-	std::cout << d << " => " << nb  << " = "
-                << nb * (*it).second << std::endl;
+	std::cout << d << " => " << nb << " = "
+				<< nb * (*it).second << std::endl;
 }
 
 void BitcoinExchange::checkOpen(std::string file, std::ifstream *stream,
@@ -121,9 +123,8 @@ void BitcoinExchange::setDb()
 	while (std::getline(dbStream, line))
 	{
 		d = Date(line.substr(0, line.find(",")));
-		std::pair<Date, float> p = std::pair<Date, float>(d,
-															atof(line.substr(line.find(",")
-																		+ 1).c_str()));
+		std::pair<Date, float> p = std::pair<Date, float>(d, 
+			atof(line.substr(line.find(",") + 1).c_str()));
 		_db.insert(p);
 	}
 }
@@ -142,4 +143,24 @@ BitcoinExchange::BitcoinExchange(std::string input_file)
 		exit(1);
 	}
 	output();
+}
+
+const char *BitcoinExchange::InvalidInputFile::what() const throw()
+{
+	return ("Bad input file.");
+}
+
+const char *BitcoinExchange::InvalidDb::what() const throw()
+{
+	return ("Failed to create database.");
+}
+
+const char * BitcoinExchange::lineError::what() const throw()
+{
+	return "Error";
+}
+
+const char *BitcoinExchange::InvalidUsage::what() const throw()
+{
+	return "Classe BitcoinExchange is not supposed to be copied";
 }
