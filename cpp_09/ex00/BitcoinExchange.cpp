@@ -25,7 +25,7 @@ void BitcoinExchange::printErr(std::string line)
 	else if (_e == tobig)
 		std::cerr << "too large a number.";
 	else
-		std::cerr << "bad input =>" << line;
+		std::cerr << "bad input => " << line;
 	std::cerr << std::endl;
 }
 

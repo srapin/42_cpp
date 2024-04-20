@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:58:02 by srapin            #+#    #+#             */
-/*   Updated: 2024/04/10 19:16:52 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/20 22:41:45 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class Date : public std::string
 	Date();
 	~Date();
 	
-	// Date(const Date &other);
-	// Date &operator=(const Date &other);
+	Date(const Date &other);
+	Date &operator=(const Date &other);
 	void parseInput(std::string input);
   
 	Date(std::string input);

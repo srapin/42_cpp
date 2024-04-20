@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 02:16:47 by srapin            #+#    #+#             */
-/*   Updated: 2024/04/10 19:16:49 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/20 22:43:55 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ Date::~Date()
 {
 }
 
-// Date::Date(const Date &other)
-// {
-//     parseInput(std::string(other));
-// }
+Date::Date(const Date &other) : std::string(other)
+{
+	
+}
 
-// Date &Date::operator=(const Date &other)
-// {
-//     parseInput(std::string(other));
-//     return (*this);
-// }
+Date &Date::operator=(const Date &other)
+{
+	this->std::string::operator=(other);
+    return (*this);
+}
 
 void Date::parseInput(std::string input)
 {
