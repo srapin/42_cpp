@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 17:19:15 by srapin            #+#    #+#             */
-/*   Updated: 2024/04/05 21:22:37 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/20 23:29:31 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,25 @@ class PmergeMe
 		std::vector<int> _vec;
 		std::list<int> _lst;
 		double _startTime;
-	public:
+		double _midTime;
+		double _endTime;
+        PmergeMe(const PmergeMe& other);
+        PmergeMe &operator=(const PmergeMe& other);
 		PmergeMe();
+	
+	
+	public:
 		PmergeMe(int ac, char **av);
-        // PmergeMe(const PmergeMe& other);
         ~PmergeMe();
-        // PmergeMe &operator=(const PmergeMe& other);
 
+		//Jacoshal order related function
+        int jacobsthalNumber(int n);
+		void getJacobsthalOrder(std::vector<int> &, int size);
 
 		
+		//vector function
 		void sortVector();
-		
         void fordJonhsonVector(std::vector<int> &v, int);
-		
         void excludeElemVector(std::vector<int> &, std::vector<int> &, int range);
         void excludeSmallerVector(std::vector<int> &v, std::vector<int> &smaller, int step);
 		void insertExcludeVector(std::vector<int> &v, std::vector<int> &alone, int step);
@@ -46,15 +52,10 @@ class PmergeMe
         void sortGroupVector(std::vector<int> &v, int gap);
 		size_t dichotomyInsetrionVector(std::vector<int> &v, int key, int start, int end, int step);
 		
-        int jacobsthalNumber(int n);
-		void getJacobsthalOrder(std::vector<int> &, int size);
-
+		//list function
 		void sortList();
-
 		std::list<int>::iterator getListIterator(std::list<int>, int move);
-		
         void fordJonhsonList(std::list<int> &v, int);
-		
         void excludeElemList(std::list<int> &, std::list<int> &, int range);
         void excludeSmallerList(std::list<int> &v, std::list<int> &smaller, int step);
 		void insertExcludeList(std::list<int> &v, std::list<int> &alone, int step);
