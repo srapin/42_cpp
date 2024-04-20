@@ -6,7 +6,7 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:25:35 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/28 10:27:01 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/20 23:00:04 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class RPN
 	public:
 		RPN();
 		RPN(std::string str);
-		// RPN(int ac, char ** str);
         RPN(const RPN& other);
         ~RPN();
         RPN &operator=(const RPN& other);

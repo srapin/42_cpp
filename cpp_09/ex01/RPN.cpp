@@ -6,15 +6,14 @@
 /*   By: srapin <srapin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:25:31 by srapin            #+#    #+#             */
-/*   Updated: 2024/03/28 10:34:18 by srapin           ###   ########.fr       */
+/*   Updated: 2024/04/20 23:04:26 by srapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN(/* args */)
+RPN::RPN()
 {
-	std::cout << "RPN: Default constructor" << std::endl;
 }
 
 RPN::RPN(std::string str) : _s()
@@ -25,7 +24,6 @@ RPN::RPN(std::string str) : _s()
 			_s.push(atoi(&str[i]));
 		else
 			doOps(str[i]);
-		// std::cout << str[i] << ' ';
 	}
 	std::cout << "res = " << _s.top() << std::endl;
 }
@@ -33,13 +31,11 @@ RPN::RPN(std::string str) : _s()
 RPN::RPN(const RPN &other)
 {
 	(void)other;
-	std::cout << "RPN: Copy constructor" << std::endl;
 }
 
 RPN &RPN::operator=(const RPN &other)
 {
 	(void)other;
-	std::cout << "RPN: Assignment operator" << std::endl;
 	return (*this);
 }
 
@@ -73,8 +69,12 @@ void RPN::doOps(const char c)
 		}
 		case ('/'):
 		{	
-			if (f)
-				_s.push(s / f);
+			if (f == 0)
+			{
+				std::cerr << "Division by zero\n";
+				exit(1);
+			}
+			_s.push(s / f);
 			break;
 		}
 		default:
@@ -87,5 +87,4 @@ void RPN::doOps(const char c)
 
 RPN::~RPN()
 {
-	std::cout << "RPN: Destructor" << std::endl;
 }
